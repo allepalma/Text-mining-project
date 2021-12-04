@@ -1,16 +1,24 @@
 import os
 import re
 import numpy as np
-import spacy
 from tqdm import tqdm
 
-# TODO: implement sanity check, to check whether words in labelfile actually correspond to the same word in parsed text
-
 class DataProcessor():
-    def __init__(self):
-        pass
+    def __init__(self, doublecheck_labels=False):
+        self.doublecheck_labels = doublecheck_labels
+
+    def create_dataset(self, dir='cadec', writefile='dataset', discard=["DICLOFENAC-SODIUM.7.txt"]):
+        '''
+        Create dataset and write to file
+        '''
+        self.discarded_files = [file for file in discard]
+        data = self.get_data(dir)
+        self.write_data(writefile, data)
 
     def read_file(self, file):
+        '''
+        Read file
+        '''
         with open(file, 'r') as f:
             data = f.read()
         return data
@@ -23,29 +31,40 @@ class DataProcessor():
         '''
         label_text = [line.split('\t') for line in label_text.split('\n')[:-1]]
         label_data = []
+        words_to_label = []
         for info in label_text:
             if info[0][0] == 'T':
                 # Extract all start and end char positions, separated by ' ' and ';'
                 label_data.append(re.split(' |;', info[1]))
-        return label_data
+                # Save words as denoted in labelfile for doublecheck
+                words_to_label.append(re.split(' ', info[2]))
+        return label_data, words_to_label
 
     def check_email(self, word):
-        # Check whether both @ and . occur in word
+        '''
+        Check whether both @ and . occur in word
+        '''
         if '@' in word and '.' in word:
             return True
         return False
 
     def check_multiple_dots(self, word, char):
-        # Check whether '.' occurs (at least) twice
-        # To catch websites and abbreviations, e.g. i.e.
+        '''
+        Check whether '.' occurs (at least) twice
+        To catch websites and abbreviations, e.g. i.e.
+        '''
         if word.count(char) > 1:
             return True
         return False
 
     # TODO: "(this)." will for now turn into ['(', 'this', ').']
-            # Might want to separate ').'?
+            # Might want to separate ').'
             # It is possible to treat (), [], " ", ' ', < >, {} combinations different from rest
-    def separate_alnumgroup(self, word, pos, end_pos):
+    def separate_nonalnumgroup(self, word, pos, end_pos):
+        '''
+        Separate group of neighbouring non-alphanumeric characters
+        into subwords
+        '''
         skip_next_word = False
         # Only non-alnums
         if len(word) == end_pos-pos:
@@ -64,22 +83,29 @@ class DataProcessor():
         return subwords, skip_next_word
 
     def separate_first_char(self, word):
-        # Separate first character from rest of string
+        '''
+        Separate first character from rest of string
+        '''
         subword1 = word[0]
         subword2 = word[1:]
         return [subword1, subword2]
 
     def separate_last_char(self, word):
-        # Separate last character from rest of string
+        '''
+        Separate last character from rest of string
+        '''
         subword1 = word[:-1]
         subword2 = word[-1]
         return [subword1, subword2]
 
     def separate_apostrophe_char(self, word, pos):
-        # n't: haven't -> have n't
-        # 've: you've -> you 've
-        # I'm: I'm -> I 'm
-        # 's: he's -> he 's
+        '''
+        Handle apostrophes specifically
+        n't: haven't -> have n't. But can't wil become: ca, n't
+        've: you've -> you 've
+        I'm: I'm -> I 'm
+        's: he's -> he 's
+        '''
         skip_next_word = False
         subwords = []
         if not word[pos+1].isalnum():
@@ -110,10 +136,18 @@ class DataProcessor():
         return [word], skip_next_word
                 
     def separate_word(self, word, pos):
+        '''
+        Separate word into three subwords,
+        i.e. char(s) before pos, char at pos, char(s) after pos
+        '''
         subwords = [word[:pos], word[pos], word[pos+1:]]
         return subwords
 
     def create_subwords(self, word):
+        '''
+        Check if word contains a non-alphanumeric character,
+        and then whether it needs to be separated into subwords
+        '''
         non_alnum = re.search("[^0-9a-zA-Z]+", word)
         pos = non_alnum.start()
         end_pos = non_alnum.end()
@@ -121,7 +155,7 @@ class DataProcessor():
         skip_next_word = False
         # Neighbouring non-alnums
         if end_pos-pos > 1:
-            subwords, skip = self.separate_alnumgroup(word, pos, end_pos)
+            subwords, skip = self.separate_nonalnumgroup(word, pos, end_pos)
             skip_next_word = skip
         # First char to be separated
         elif pos == 0:
@@ -133,21 +167,29 @@ class DataProcessor():
         elif char =='\'':
             subwords, skip = self.separate_apostrophe_char(word, pos)
             skip_next_word = skip
-
+        # Check if word is email address
         elif self.check_email(word):
             subwords = [word]
-
+        # Check if word contains multiple dots
         elif char == '.' and self.check_multiple_dots(word, char):
             subwords = [word]
-
+        # In all other cases: separate non-alnum from the rest
         else:
             subwords = self.separate_word(word, pos)
             # Skip next always true, because always single non-alnum within word
             skip_next_word = True
-
         return subwords, skip_next_word
 
     def get_words_and_positions(self, text_file):
+        '''
+        Read text from textfile,
+        replace enters by spaces and split on spaces.
+        Iterate over words to check for non-alhpanumeric characters.
+        If this is the case, (potentially) separate the words into subwords,
+        insert the subwords into [text],
+        correctly save the position of the first character of each word
+        into [char_positions]
+        '''
         text = self.read_file(text_file)
         text = text.replace('\n', ' ')
         text = text.split(' ')[:-1] # Last character will be '', discarced here
@@ -183,13 +225,50 @@ class DataProcessor():
             i += 1
         return text, char_positions
 
+    def double_check(self, i, text, word_index, words_to_label, to_label_index, file):
+        '''
+        Double check if words in text with special label correspond
+        to words in the labelfile (saved in [words_to_label]).
+        Create subwords where necessary for words in labelfile and 
+        check if they are the same words as in text
+            (this is not exactly identical to how subwords are created for [text],
+            therefore print mismatches to also check manually)
+        '''
+        word = text[word_index]
+        check_word = words_to_label[i][to_label_index]
+        if word != check_word:
+            sub_check_words, skip_next = self.create_subwords(check_word)
+            if len(sub_check_words) > 2 and skip_next == False:
+                pass # TODO
+            del words_to_label[i][to_label_index]
+            new_index = to_label_index
+            for new_word in sub_check_words:
+                try:
+                    words_to_label[i].insert(new_index, new_word)
+                except:
+                    words_to_label[i].append(new_word)
+                new_index += 1
+        if word != words_to_label[i][to_label_index]:
+            print(f'Error: word to label in text doesn\'t correspond to word in labelfile:')
+            print(f'Text: {text[word_index]}\tlabelfile: {words_to_label[i][to_label_index]}')
+            print(f'Filename: {file}\n')
+        return words_to_label
+
     def get_labels(self, label_file, text, char_positions):
+        '''
+        For all words to be labeled as denoted in label_file:
+            find their index in [text] on basis of their starting character
+            (which is stored in [label_data]),
+            store the label in [labels] at the same index
+        Potentially do the double check
+        '''
         label_text = self.read_file(label_file)
-        label_data = self.extract_labelinfo(label_text)
+        label_data, words_to_label = self.extract_labelinfo(label_text)
         labels = ['O']*len(char_positions)
         # For all lines with labeldata for word(s)
         for i in range(len(label_data)):
             label = label_data[i][0]
+            to_label_index = 0
             # For all start positions belonging to the label
             for j in range(1, len(label_data[i])-1, 2):
                 start_pos = int(label_data[i][j])
@@ -198,77 +277,73 @@ class DataProcessor():
                 word_index = char_positions.index(start_pos)
                 if j == 1:
                     labels[word_index] = f'B-{label}'
+                    if self.doublecheck_labels:
+                        words_to_label = self.double_check(i, text, word_index, words_to_label, to_label_index, label_file)
+                    to_label_index += 1
                 else:
                     labels[word_index] = f'I-{label}'
+                    if self.doublecheck_labels:
+                        words_to_label = self.double_check(i, text, word_index, words_to_label, to_label_index, label_file)
+                    to_label_index += 1
                 # TODO: Maybe need to check whether i+1 is in range...! What to do if not?
                 current_pos = start_pos + char_positions[word_index+1] - char_positions[word_index]
+                # Iterate over all words that have this label
                 while current_pos < end_pos:
                     word_index = char_positions.index(current_pos)
                     labels[word_index] = f'I-{label}'
+                    if self.doublecheck_labels:
+                        words_to_label = self.double_check(i, text, word_index, words_to_label, to_label_index, label_file)
+                    to_label_index += 1
                     current_pos += (char_positions[word_index+1] - char_positions[word_index])
         return labels
 
     def get_data(self, directory):
+        '''
+        Extract text and corresponding labels from all files
+        in specified directory
+        '''
         text_dir = os.path.join(directory, 'text')
         label_dir = os.path.join(directory, 'original')
-
-        # TODO: checks for path existence
+        if not os.path.isdir(text_dir):
+            print(f'\nError: directory to textfiles does not exist.')
+            return [[],[]]
+        if not os.path.isdir(label_dir):
+            print(f'\nError: directory to labelfiles does not exist.')
+            return [[],[]]
 
         text, labels = [], []
         print(f'\nReading messages and constructing word-label pairs...')
         for filename in tqdm(os.listdir(text_dir)):
-            if filename != "DICLOFENAC-SODIUM.7.txt":
+            if filename not in self.discarded_files:
                 text_file = os.path.join(text_dir, filename)
                 label_file = os.path.join(label_dir, f'{filename[:-3]}ann')
                 try:
                     message_text, message_char_positions = self.get_words_and_positions(text_file)
                 except:
-                    print(f'Error while parsing TEXT from file: {text_file}')
+                    print(f'Error while parsing test from file: {text_file}')
                     return
                 try:
                     message_labels = self.get_labels(label_file, message_text, message_char_positions)
                 except:
-                    print(f'Error while parsing LABELS from file: {label_file}')
+                    print(f'Error while parsing labels from file: {label_file}')
                     return
                 text.append(message_text)
                 labels.append(message_labels)
         return [text, labels]
 
     def write_data(self, filename, data):
-        # Write words and corresponding labels to txt file in discussed format
+        '''
+        Write words and corresponding labels to txt file
+        '''
         n_messages = len(data[0])
         print(f'\nWriting words and corresponding labels of {n_messages} messages to {filename}...')
+        print(f'\t(Discarded files: {self.discarded_files})')
         with open(filename, 'w') as f:
             for i in tqdm(range(n_messages)):
                 message_txt = data[0][i]
                 message_labels = data[1][i]
-                for word, label in zip(message_txt, message_labels):
-                    f.write(f'{word}\t{label}\n')
-                f.write('\n')
-
-
-p = DataProcessor()
-# Try arthrotec 137 and lipitor file 662 / 842
-
-test=0
-
-if test:
-    text_file = 'cadec/text/DICLOFENAC-SODIUM.7.txt'
-    label_file = 'cadec/original/DICLOFENAC-SODIUM.7.ann'
-    txt, chars = p.get_words_and_positions(text_file)
-
-    for i in range(len(txt)):
-        print(f'{txt[i]} / {chars[i]}')
-
-    labels = p.get_labels(label_file, txt, chars)
-
-    for i in range(len(txt)):
-        print(f'{txt[i]} / {labels[i]}')
-
-else:
-    dir = 'cadec'
-    writefile = 'testwrite.txt'
-    data = p.get_data(dir)
-    testdata = [[['a', 'b', 'c'], ['d', 'e']], [['1', '2', '3'], ['4', '5']]]
-    p.write_data(writefile, data)
-
+                for i, (word, label) in enumerate(zip(message_txt, message_labels)):
+                    if i==len(message_txt)-1:
+                        f.write(f'{word}\t{label}\n\n')
+                    else:
+                        f.write(f'{word}\t{label}\n')
