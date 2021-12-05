@@ -347,3 +347,10 @@ class DataProcessor():
                         f.write(f'{word}\t{label}\n\n')
                     else:
                         f.write(f'{word}\t{label}\n')
+
+
+if __name__ == '__main__':
+    data_dir = 'cadec'
+    writefile = 'testwrite.txt'
+    p = DataProcessor()
+    p.create_dataset(data_dir, writefile)
