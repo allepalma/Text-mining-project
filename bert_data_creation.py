@@ -64,7 +64,7 @@ class DataProcessor():
     def train_test_split(self):
         '''
         Splits the dataset into training and test observations
-        :return:
+        :return: Training and test data and labels
         '''
         X_train, X_test, y_train, y_test = train_test_split(self.tokens, self.labels, test_size = 0.20,
                                                             random_state = self.seed)
@@ -88,6 +88,7 @@ class DataProcessor():
     def get_bert_labels(self, tokenized_words, labels):
         '''
         Align labels with the pre-processed token sequences
+        :return: A list of label sequences for sentences
         '''
         labels_bert = []
         for i, label in enumerate(labels):  # Loop over token sentences
@@ -116,10 +117,9 @@ class DataProcessor():
         # So now only use the inputs, not the original data anymore
         data = TensorDataset(torch.tensor(bert_ds['input_ids']), torch.tensor(bert_ds['attention_mask']), labels)
         sampler = RandomSampler(data)
-        # For each data loader we need the data, a sampler and a loader
+        # For each data loader we need the data, a sampler and a batch size
         data_loader = DataLoader(dataset = data, sampler = sampler, batch_size = self.batch_size)
         return data_loader
 
 
 data_processor = DataProcessor(filename='testwrite.txt', model = 'bert-base-uncased', seed=13, max_length = 512)
-
