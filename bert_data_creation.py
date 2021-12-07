@@ -4,7 +4,7 @@ from transformers import AutoTokenizer
 from sklearn.model_selection import train_test_split
 
 '''
-Read the data from a pre-processed CADEC dataset and process them into a format compatible with BERT
+Read the data from a pre-processed CADEC dataset and process it into a format compatible with BERT
 '''
 
 class DataProcessor():
