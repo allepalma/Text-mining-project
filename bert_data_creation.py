@@ -4,7 +4,7 @@ from transformers import AutoTokenizer
 from sklearn.model_selection import train_test_split
 
 '''
-Read the data from a pre-processed CADEC dataset and process it into a format compatible with BERT
+Read the data from a pre-processed CADEC dataset and process them into a format compatible with BERT
 '''
 
 class DataProcessor():
@@ -120,6 +120,3 @@ class DataProcessor():
         # For each data loader we need the data, a sampler and a batch size
         data_loader = DataLoader(dataset = data, sampler = sampler, batch_size = self.batch_size)
         return data_loader
-
-
-data_processor = DataProcessor(filename='testwrite.txt', model = 'bert-base-uncased', seed=13, max_length = 512)

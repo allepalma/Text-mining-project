@@ -3,7 +3,7 @@ import re
 import numpy as np
 from tqdm import tqdm
 
-class DataProcessor():
+class DatasetCreator():
     def __init__(self, doublecheck_labels=False):
         self.doublecheck_labels = doublecheck_labels
 
@@ -57,9 +57,6 @@ class DataProcessor():
             return True
         return False
 
-    # TODO: "(this)." will for now turn into ['(', 'this', ').']
-            # Might want to separate ').'
-            # It is possible to treat (), [], " ", ' ', < >, {} combinations different from rest
     def separate_nonalnumgroup(self, word, pos, end_pos):
         '''
         Separate group of neighbouring non-alphanumeric characters
@@ -347,10 +344,3 @@ class DataProcessor():
                         f.write(f'{word}\t{label}\n\n')
                     else:
                         f.write(f'{word}\t{label}\n')
-
-
-if __name__ == '__main__':
-    data_dir = 'cadec'
-    writefile = 'testwrite.txt'
-    p = DataProcessor()
-    p.create_dataset(data_dir, writefile)
