@@ -398,3 +398,8 @@ class DatasetCreator():
                         f.write(f'{word}\t{label}\n\n')
                     else:
                         f.write(f'{word}\t{label}\n')
+
+
+# data_creator = DatasetCreator()
+# data_creator.create_dataset('cadec','dataset.txt')
+

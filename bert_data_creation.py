@@ -18,28 +18,40 @@ class DataProcessor():
         else:
             self.device = torch.device('cpu')
 
+        # Initialize attribute variables
         self.max_length = max_length
         self.filename = filename
         self.seed = seed  # For test and train split
         self.model = model
         self.batch_size = batch_size
 
+        # Initialize tokenizer
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model)
+
         print('Parsing the data file...')
-        self.tokens, self.labels = self.sentence_parser()  # Obtain the sentences
+        # Obtain sentences and labels
+        self.tokens, self.labels = self.sentence_parser()
+
+        # Split sentences if their associated wordpiece encoding is longer than max_length
+        self.split_tokens, self.split_labels = [], []
+        for tok, lab in zip(self.tokens, self.labels):
+            split_tok, split_lab = self.split_sentences(tok, lab)
+            self.split_tokens.extend(split_tok)
+            self.split_labels.extend(split_lab)
+
+        # Create ids for labels and split into training and test set
         self.label2id = self.get_label_encoding_dict()  # Initialize mapping of labels to ids
         self.tokens_train, self.tokens_test, self.labels_train, self.labels_test = self.train_test_split()
 
-        # Initialize tokenizer
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model)
         # Tokenize for BERT
         # Training set
         self.tokenized_input_train = self.tokenizer(self.tokens_train, truncation=True, is_split_into_words=True,
-                                                    add_special_tokens=True, padding = 'max_length', max_length = self.max_length)
+                                                    add_special_tokens=True, padding='max_length', max_length=self.max_length)
         self.train_tags = self.get_bert_labels(self.tokenized_input_train, self.labels_train)
 
         # Test set
         self.tokenized_input_test = self.tokenizer(self.tokens_test, truncation=True, is_split_into_words=True,
-                                                    add_special_tokens=True, padding = 'max_length', max_length = self.max_length)
+                                                    add_special_tokens=True, padding='max_length', max_length=self.max_length)
         self.test_tags = self.get_bert_labels(self.tokenized_input_test, self.labels_test)
 
         # Prepare the data so it is compatible with torch
@@ -61,13 +73,41 @@ class DataProcessor():
         labels = [[pair.split('\t')[1] for pair in sent] for sent in sentences]
         return tokens, labels
 
+    def split_sentences(self, sentence, labels):
+        '''
+        Read the tokenized sentences and split them if they are longer than a maximum length
+        :param: An input tokenized sentence
+        :return: The tokenized sentence
+        '''
+        # The BERT encoding of the period token
+        period_tok = '.'
+        # Recursion takes place only if the split has to be performed
+        if len(self.tokenizer.encode(sentence, is_split_into_words=True)) > self.max_length:
+            idx_half = len(sentence)//2
+            # Dictionary with position associated to how far each period (if any) is from the middle of the sentence
+            period_offsets = {pos: abs(idx_half - pos) for pos in range(len(sentence)) if sentence[pos] == period_tok}
+            if period_offsets != {}:
+                # If there is a period, sort based on the distance from the central point
+                period_offsets_sorted = sorted(period_offsets.items(), key=lambda x: x[1])
+                split_point = period_offsets_sorted[0][0]
+            else:
+                # If there is no period, take the middle index
+                split_point = idx_half
+            # Define the splits based on the found splitting point
+            sent1, sent2 = sentence[:split_point+1], sentence[split_point+1:]
+            lab1, lab2 = labels[:split_point+1], labels[split_point+1:]
+            split1, split2 = self.split_sentences(sent1, lab1), self.split_sentences(sent2, lab2)  # Recursive call
+            return split1[0]+split2[0], split1[1]+split2[1]
+        else:
+            return [sentence], [labels]
+
     def train_test_split(self):
         '''
         Splits the dataset into training and test observations
         :return: Training and test data and labels
         '''
-        X_train, X_test, y_train, y_test = train_test_split(self.tokens, self.labels, test_size = 0.20,
-                                                            random_state = self.seed)
+        X_train, X_test, y_train, y_test = train_test_split(self.split_tokens, self.split_labels, test_size=0.20,
+                                                            random_state=self.seed)
         return X_train, X_test, y_train, y_test
 
     def get_label_encoding_dict(self):
@@ -120,3 +160,6 @@ class DataProcessor():
         # For each data loader we need the data, a sampler and a batch size
         data_loader = DataLoader(dataset = data, sampler = sampler, batch_size = self.batch_size)
         return data_loader
+
+
+data_class = DataProcessor('dataset.txt', 'bert-base-uncased', 22, 32, 512)
