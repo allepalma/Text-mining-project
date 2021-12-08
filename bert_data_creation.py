@@ -161,5 +161,3 @@ class DataProcessor():
         data_loader = DataLoader(dataset = data, sampler = sampler, batch_size = self.batch_size)
         return data_loader
 
-
-data_class = DataProcessor('dataset.txt', 'bert-base-uncased', 22, 32, 512)
