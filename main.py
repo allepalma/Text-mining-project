@@ -10,7 +10,7 @@ max_length = 512
 # Create dataset if it has not been created yet
 if not os.path.isfile(dataset_file):
     data_dir = 'cadec'
-    c = DatasetCreator(max_length=max_length, split_messages=True)
+    c = DatasetCreator()
     c.create_dataset(data_dir, dataset_file)
 
 data_processor = DataProcessor(filename=dataset_file, model='bert-base-uncased', seed=seed, max_length=max_length)
