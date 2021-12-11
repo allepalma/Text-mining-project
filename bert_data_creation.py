@@ -7,10 +7,11 @@ from sklearn.model_selection import train_test_split
 Read the data from a pre-processed CADEC dataset and process them into a format compatible with BERT
 '''
 
+
 class DataProcessor():
-    '''
+    """
     Loads the data from a pre-processed CADEC named-entity dataset and creates a BERT dataset
-    '''
+    """
     def __init__(self, filename, model, seed, batch_size = 32, max_length = 512):
         # Set the device
         if torch.cuda.is_available():
@@ -43,15 +44,17 @@ class DataProcessor():
         self.label2id = self.get_label_encoding_dict()  # Initialize mapping of labels to ids
         self.tokens_train, self.tokens_test, self.labels_train, self.labels_test = self.train_test_split()
 
+        print('Tokenize sentences...')
         # Tokenize for BERT
         # Training set
         self.tokenized_input_train = self.tokenizer(self.tokens_train, truncation=True, is_split_into_words=True,
-                                                    add_special_tokens=True, padding='max_length', max_length=self.max_length)
+                                                    add_special_tokens=True, padding=True)
         self.train_tags = self.get_bert_labels(self.tokenized_input_train, self.labels_train)
 
+        print('Preparing the dataset...')
         # Test set
         self.tokenized_input_test = self.tokenizer(self.tokens_test, truncation=True, is_split_into_words=True,
-                                                    add_special_tokens=True, padding='max_length', max_length=self.max_length)
+                                                   add_special_tokens=True, padding=True)
         self.test_tags = self.get_bert_labels(self.tokenized_input_test, self.labels_test)
 
         # Prepare the data so it is compatible with torch
@@ -68,15 +71,16 @@ class DataProcessor():
         '''
         with open(self.filename, 'r') as f:
             data_raw = f.read()
-        sentences = [sent.split('\n') for sent in data_raw.split('\n\n')[:-1]]
-        tokens = [[pair.split('\t')[0] for pair in sent] for sent in sentences]
+        sentences = [sent.split('\n') for sent in data_raw.split('\n\n')[:-1]]  # Read the sentences
+        tokens = [[pair.split('\t')[0] for pair in sent] for sent in sentences]  # Colect labels and tokens
         labels = [[pair.split('\t')[1] for pair in sent] for sent in sentences]
         return tokens, labels
 
     def split_sentences(self, sentence, labels):
         '''
-        Read the tokenized sentences and split them if they are longer than a maximum length
+        Read the tokenized sentences and split them if they are longer than a maximum length (by default, 512)
         :param: An input tokenized sentence
+        :param: The labels corresponding to the tokenized sentence
         :return: The tokenized sentence
         '''
         # The BERT encoding of the period token
@@ -87,9 +91,9 @@ class DataProcessor():
             # Dictionary with position associated to how far each period (if any) is from the middle of the sentence
             period_offsets = {pos: abs(idx_half - pos) for pos in range(len(sentence)) if sentence[pos] == period_tok}
             if period_offsets != {}:
-                # If there is a period, sort based on the distance from the central point
+                # If there is a period, sort period locations based on the distance from the central point
                 period_offsets_sorted = sorted(period_offsets.items(), key=lambda x: x[1])
-                split_point = period_offsets_sorted[0][0]
+                split_point = period_offsets_sorted[0][0]  # The period location closest to the centre of the sequence
             else:
                 # If there is no period, take the middle index
                 split_point = idx_half
@@ -97,7 +101,7 @@ class DataProcessor():
             sent1, sent2 = sentence[:split_point+1], sentence[split_point+1:]
             lab1, lab2 = labels[:split_point+1], labels[split_point+1:]
             split1, split2 = self.split_sentences(sent1, lab1), self.split_sentences(sent2, lab2)  # Recursive call
-            return split1[0]+split2[0], split1[1]+split2[1]
+            return split1[0]+split2[0], split1[1]+split2[1]  # Compose lists of sub-lists of split sentences
         else:
             return [sentence], [labels]
 
@@ -139,7 +143,7 @@ class DataProcessor():
             for word_idx in word_ids:
                 # Special characters ([CLS], [SEP], [PAD]) set to -100
                 if word_idx is None:
-                    label_ids.append(-100)
+                    label_ids.append(self.label2id['O'])  # Assign the O label to the special characters
                 # If a word is broken by wordpiece, just add as many labels as word chunk
                 else:
                     label_ids.append(self.label2id[label[word_idx]])
@@ -148,9 +152,9 @@ class DataProcessor():
 
     def create_data_loaders(self, bert_ds, labels):
         '''
-        Create a dataset compatoble with torch
+        Create a dataset compatible with torch
         :param bert_ds: A tokenized object containing both input_ids and mask ids
-        :param labels: The label sequence asociated to the tokens
+        :param labels: The label sequence associated to the tokens
         :return: A torch DataLoader object
         '''
         # Create the DataLoader for our training set
@@ -158,8 +162,6 @@ class DataProcessor():
         data = TensorDataset(torch.tensor(bert_ds['input_ids']), torch.tensor(bert_ds['attention_mask']), labels)
         sampler = RandomSampler(data)
         # For each data loader we need the data, a sampler and a batch size
-        data_loader = DataLoader(dataset = data, sampler = sampler, batch_size = self.batch_size)
+        data_loader = DataLoader(dataset=data, sampler=sampler, batch_size=self.batch_size)
         return data_loader
 
-
-data_class = DataProcessor('dataset.txt', 'bert-base-uncased', 22, 32, 512)
