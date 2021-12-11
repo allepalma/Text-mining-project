@@ -4,9 +4,7 @@ import numpy as np
 from tqdm import tqdm
 
 class DatasetCreator():
-    def __init__(self, max_length=512, split_messages=True, doublecheck_labels=False, discard=["DICLOFENAC-SODIUM.7.txt"]):
-        self.max_length = max_length
-        self.split_messages = split_messages
+    def __init__(self, doublecheck_labels=False, discard=["DICLOFENAC-SODIUM.7.txt"]):
         self.doublecheck_labels = doublecheck_labels
         self.discarded_files = [file for file in discard]
 
@@ -179,52 +177,6 @@ class DatasetCreator():
             skip_next_word = True
         return subwords, skip_next_word
 
-    def split_message(self, text, labels):
-        '''
-        Recursively split a message that is longer than max_length,
-        on basis of separation of sentences with a '.'
-        Find the '.' that is closest to the middle of the message,
-        split message there.
-        return: splitted messages and corresponding labels
-        '''
-        length = len(text)
-        half_length = length/2
-        eos_indexes = []
-        for i in range(len(text)):
-            if text[i].endswith('.'):
-                eos_indexes.append(i)
-        # Check if at least one '.' was found to split the message into sentences
-        if not eos_indexes:
-            print(f'Warning: no "." was found to split message longer than max_length')
-            return [text, labels]
-        # Find end-of-sequence indicator (.) that is closest to middle of message
-        eos_np = np.asarray(eos_indexes)
-        idx = (np.abs(eos_np - half_length)).argmin()
-        split_i = eos_np[idx]
-
-        text_submessages, labels_submessages = [], []
-        text_1 = text[:split_i+1]
-        labels_1 = labels[:split_i+1]
-        text_2 = text[split_i+1:]
-        labels_2 = labels[split_i+1:]
-        if len(text_1) > self.max_length:
-            split_text_1, split_labels_1 = self.split_message(text_1, labels_1)
-            for i in range(len(split_text_1)):
-                text_submessages.append(split_text_1[i])
-                labels_submessages.append(split_labels_1[i])
-        else:
-            text_submessages.append(text_1)
-            labels_submessages.append(labels_1)
-        if len(text_2) > self.max_length:
-            split_text_2, split_labels_2 = self.split_message(text_2, labels_2)
-            for i in range(len(split_text_2)):
-                text_submessages.append(split_text_2[i])
-                labels_submessages.append(split_labels_2[i])
-        else:
-            text_submessages.append(text_2)
-            labels_submessages.append(labels_2)
-        return [text_submessages, labels_submessages]
-
     def double_check(self, i, text, word_index, words_to_label, to_label_index, file):
         '''
         Double check if words in text with special label correspond
@@ -372,14 +324,8 @@ class DatasetCreator():
                 except:
                     print(f'Error while parsing labels from file: {label_file}')
                     return
-                if self.split_messages and len(message_text) > self.max_length:
-                    message_text, message_labels = self.split_message(message_text, message_labels)
-                    for i in range(len(message_text)):
-                        text.append(message_text[i])
-                        labels.append(message_labels[i])
-                else:
-                    text.append(message_text)
-                    labels.append(message_labels)
+                text.append(message_text)
+                labels.append(message_labels)
         return [text, labels]
 
     def write_data(self, filename, data):
@@ -398,8 +344,3 @@ class DatasetCreator():
                         f.write(f'{word}\t{label}\n\n')
                     else:
                         f.write(f'{word}\t{label}\n')
-
-
-# data_creator = DatasetCreator()
-# data_creator.create_dataset('cadec','dataset.txt')
-
