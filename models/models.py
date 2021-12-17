@@ -321,8 +321,4 @@ class Baseline(nn.Module):
         return {
             'loss': loss,
             'predictions': preds}
-
-
-
-
-
+    
