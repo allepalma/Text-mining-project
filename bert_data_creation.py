@@ -74,6 +74,7 @@ class DataProcessor():
         sentences = [sent.split('\n') for sent in data_raw.split('\n\n')[:-1]]  # Read the sentences
         tokens = [[pair.split('\t')[0] for pair in sent] for sent in sentences]  # Colect labels and tokens
         labels = [[pair.split('\t')[1] for pair in sent] for sent in sentences]
+        labels = [lab if lab not in ('I-Finding', 'B-Finding') else 'O' for lab in labels]
         return tokens, labels
 
     def split_sentences(self, sentence, labels):
