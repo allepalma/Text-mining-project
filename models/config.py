@@ -7,7 +7,7 @@ class CustomBertConfig(PretrainedConfig):
     """
     Configuration class to store the model parameters
     - model: Type of BERT model
-    - clf_type: linear, lstm, crf
+    - clf_type: linear, lstm, crf, baseline
     - num_labels:  Number of classification labels per item
     - dropout:  Dropout between BERT and classifier
     - hidden_size:  Different from None only if model is linear
@@ -24,6 +24,8 @@ class CustomBertConfig(PretrainedConfig):
                  num_clf_hidden_layers=0,
                  num_neurons=(),
                  activation=nn.ReLU,
+                 embedding_size=300,
+                 vocab_size=30522,
                  **kwargs
                  ):
         super().__init__(**kwargs)
@@ -36,7 +38,9 @@ class CustomBertConfig(PretrainedConfig):
             self.num_clf_hidden_layers = num_clf_hidden_layers
             self.activation = activation
             self.num_neurons = num_neurons
-
+        if self.clf_type == 'baseline':
+            self.embedding_size = embedding_size
+            self.vocab_size = vocab_size
 
 
 

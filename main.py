@@ -2,7 +2,7 @@ import os
 from dataset_creation import DatasetCreator
 from bert_data_creation import DataProcessor
 from models.models import *
-from models.configuration_bert import CustomBertConfig
+from models.config import CustomBertConfig
 from torch import nn
 
 
@@ -21,14 +21,13 @@ if not os.path.isfile(dataset_file):
 # Class containing the data
 data_loader = DataProcessor(filename=dataset_file, model='bert-base-uncased', seed=seed, max_length=max_length,
                             batch_size=8)
+print(data_loader.label2id)
 # Configure parameters
-config = CustomBertConfig(model='bert-base-uncased', clf_type='linear', num_labels=11,
-                          dropout=0.1, hidden_size=768, num_clf_hidden_layers=0, num_neurons=(),
-                          activation=nn.ReLU)
+config = CustomBertConfig(clf_type='baseline', num_labels=9, embedding_size=256, vocab_size=30522, hidden_size=128)
 
 # Initialize model
-bert_model = BertCRF(config)
+model = Baseline(config)
 batch = [b for b in data_loader.train_dataloader][0]
 
 # Predict
-res = bert_model(input_ids=batch[0], attention_mask = batch[1], labels = batch[2])
+res = model(input_ids=batch[0], attention_mask = batch[1], labels = batch[2])

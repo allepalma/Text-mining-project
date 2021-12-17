@@ -118,7 +118,7 @@ class BertCRF(BertPreTrainedModel):
         self.bert = AutoModel.from_pretrained(config.model)
         self.hidden_size = config.hidden_size  # The hidden layer size of the BERT model
         # Linear layer to map BERT output to label size
-        self.linear = nn.Linear(config.hidden_size, self.num_labels)
+        self.linear = nn.Linear(self.hidden_size, self.num_labels)
         # CRF head
         self.crf = CRF(self.num_labels, batch_first=True)
         # Initialize log-softmax for prediction
@@ -257,6 +257,71 @@ class BertLSTM(BertPreTrainedModel):
             'logits': lstm_out,
             'hidden_states': outputs.hidden_states,
             'attentions': outputs.attentions}
+
+
+'''
+Baseline LSTM-crf network 
+'''
+
+
+class Baseline(nn.Module):
+    """
+    Module implementing a baseline model with an LSTM followed by a CRF layer
+    The config object must contain:
+    - embedding_size: the dimensionality of the embedded words
+    - voocab_size: the vocabulary size of BERT (hint: leave as default)
+    - num_labels: number of output labels
+    - hidden_size: the hidden_size of the bert model (768)
+    """
+    def __init__(self, config):
+        super(Baseline, self).__init__()
+        self.embedding_size = config.embedding_size  # The size of the initial word embeddings
+        self.vocab_size = config.vocab_size  # The number of words present in the BERT vocabulary
+        self.num_labels = config.num_labels
+        self.hidden_size = config.hidden_size  # The hidden size of the LSTM
+
+        # Embedding layer to compute a representation of the sequence of words
+        self.embedding = nn.Embedding(self.vocab_size, self.embedding_size)
+        # The LSTM layer
+        self.lstm = nn.LSTM(self.embedding_size,
+                            self.hidden_size,
+                            num_layers=2,
+                            dropout=config.dropout,
+                            batch_first=True)
+        # A linear layer that maps the sequence to the possible number of labels
+        self.hidden2tag = nn.Linear(self.hidden_size, self.num_labels)
+        self.crf = CRF(num_tags=self.num_labels, batch_first=True)
+        # Log-softmax function (between the LSTM and the CRF)
+        self.log_soft = f.log_softmax
+
+    def forward(
+        self,
+        input_ids=None,
+        attention_mask=None,
+        labels=None
+    ):
+        # Fix type of the attention mask
+        attention_mask = attention_mask.type(torch.uint8)
+        # Apply embedding layer to the input ids to the input labels
+        embedded_input = self.embedding(input_ids)
+        # Apply the lstm to the result of the embedding
+        lstm_out, _ = self.lstm(embedded_input)
+        # Apply Linear layer to map to the label size
+        linear_out = self.hidden2tag(lstm_out)
+        logits = self.log_soft(linear_out, 2)
+        # Compute the CRF loss as the negative log-likelihood (which is the output of forward)
+        loss = -self.crf(logits, labels, mask=attention_mask, reduction='token_mean')
+
+        # Predict the best sequence
+        pred_list = self.crf.decode(logits, mask=attention_mask)
+        preds = torch.zeros_like(input_ids).long()
+        for i, pred in enumerate(pred_list):
+            preds[i, :len(pred)] = torch.LongTensor(pred)
+
+        return {
+            'loss': loss,
+            'predictions': preds}
+
 
 
 
