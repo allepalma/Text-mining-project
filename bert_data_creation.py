@@ -42,7 +42,10 @@ class DataProcessor():
 
         # Create ids for labels and split into training and test set
         self.label2id = self.get_label_encoding_dict()  # Initialize mapping of labels to ids
-        self.tokens_train, self.tokens_test, self.labels_train, self.labels_test = self.train_test_split()
+        # Test set: 0.2
+        self.tokens_train, self.tokens_test, self.labels_train, self.labels_test = self.train_test_split(test_size=0.20)
+        # Validation set: 0.125 of 0.8 = 0.1 of total
+        self.tokens_train, self.tokens_val, self.labels_train, self.labels_val = self.train_test_split(test_size=0.125)
 
         print('Tokenize sentences...')
         # Tokenize for BERT
@@ -50,18 +53,23 @@ class DataProcessor():
         self.tokenized_input_train = self.tokenizer(self.tokens_train, truncation=True, is_split_into_words=True,
                                                     add_special_tokens=True, padding=True)
         self.train_tags = self.get_bert_labels(self.tokenized_input_train, self.labels_train)
-
-        print('Preparing the dataset...')
+        # Validation set
+        self.tokenized_input_val = self.tokenizer(self.tokens_val, truncation=True, is_split_into_words=True,
+                                                  add_special_tokens=True, padding=True)
+        self.val_tags = self.get_bert_labels(self.tokenized_input_val, self.labels_val)
         # Test set
         self.tokenized_input_test = self.tokenizer(self.tokens_test, truncation=True, is_split_into_words=True,
                                                    add_special_tokens=True, padding=True)
         self.test_tags = self.get_bert_labels(self.tokenized_input_test, self.labels_test)
 
+        print('Preparing the dataset...')
         # Prepare the data so it is compatible with torch
         self.y_train = torch.tensor(self.train_tags).to(self.device)
+        self.y_val = torch.tensor(self.val_tags).to(self.device)
         self.y_test = torch.tensor(self.test_tags).to(self.device)
 
         self.train_dataloader = self.create_data_loaders(self.tokenized_input_train, self.y_train)
+        self.val_dataloader = self.create_data_loaders(self.tokenized_input_val, self.y_val)
         self.test_dataloader = self.create_data_loaders(self.tokenized_input_test, self.y_test)
 
     def sentence_parser(self):
@@ -106,12 +114,12 @@ class DataProcessor():
         else:
             return [sentence], [labels]
 
-    def train_test_split(self):
+    def train_test_split(self, test_size):
         '''
         Splits the dataset into training and test observations
         :return: Training and test data and labels
         '''
-        X_train, X_test, y_train, y_test = train_test_split(self.split_tokens, self.split_labels, test_size=0.20,
+        X_train, X_test, y_train, y_test = train_test_split(self.split_tokens, self.split_labels, test_size=test_size,
                                                             random_state=self.seed)
         return X_train, X_test, y_train, y_test
 
