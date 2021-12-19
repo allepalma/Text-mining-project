@@ -130,6 +130,8 @@ class TrainTest():
                 if loss_val < (prev_loss - 0.005):
                     no_improve_cnt = 0
                     prev_loss = loss_val
+                    if not os.path.exists('saved_models'):
+                        os.makedirs('saved_models')
                     torch.save(self.model.state_dict(), os.path.join('saved_models', self.model_name))
                 else:
                     no_improve_cnt += 1
