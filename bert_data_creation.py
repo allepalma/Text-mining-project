@@ -41,7 +41,7 @@ class DataProcessor():
             self.split_labels.extend(split_lab)
 
         # Create ids for labels and split into training and test set
-        self.label2id = self.get_label_encoding_dict()  # Initialize mapping of labels to ids
+        self.label2id, self.id2label = self.get_label_encoding_dict()  # Initialize mapping of labels to ids
         # Test set: 0.2
         self.tokens_train, self.tokens_test, self.labels_train, self.labels_test = self.train_test_split(test_size=0.20)
         # Validation set: 0.125 of 0.8 = 0.1 of total
@@ -136,7 +136,8 @@ class DataProcessor():
         # Sort labels by the first letter after B- and I- in the BIO tag
         labels = ['O'] + sorted(labels, key=lambda x: x[2:])
         lab2id = {lab: id for lab, id in zip(labels, range(len(labels)))}
-        return lab2id
+        id2lab = labels
+        return lab2id, id2lab
 
     def get_bert_labels(self, tokenized_words, labels):
         '''
