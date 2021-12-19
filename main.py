@@ -16,7 +16,7 @@ def baseline(seed, max_length, dataset_file):
     # Initialize model
     bert_model = Baseline(config)
     # Train and test the model
-    TrainTest(bert_model, 'Baseline', data_loader, learning_rate=1e-3)
+    TrainTest(bert_model, 'Baseline', data_loader, learning_rate=0.001)
 
 def bertmodels(seed, max_length, dataset_file):
     transformers = ['bert-base-uncased', 'dmis-lab/biobert-v1.1']
@@ -32,12 +32,12 @@ def bertmodels(seed, max_length, dataset_file):
                                         batch_size=4)
             # Configure parameters
             config = CustomBertConfig(model=transformer, clf_type='linear', num_labels=9,
-                                    dropout=0.1, hidden_size=768, num_clf_hidden_layers=0, num_neurons=(),
-                                    activation=nn.ReLU)
+                                      dropout=0.1, hidden_size=768, num_clf_hidden_layers=0, num_neurons=(),
+                                      activation=nn.ReLU)
             # Initialize model
             bert_model = heads[model](config)
             # Train and test the model
-            model_name = f'{transformer} + {model}'
+            model_name = f'{transformer}_{model}'
             TrainTest(bert_model, model_name, data_loader)
 
 
@@ -53,4 +53,4 @@ if __name__ == '__main__':
         c.create_dataset(data_dir, dataset_file)
     
     baseline(seed, max_length, dataset_file)
-    # bertmodels(seed, max_length, dataset_file)
+    bertmodels(seed, max_length, dataset_file)

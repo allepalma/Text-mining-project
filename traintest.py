@@ -1,3 +1,4 @@
+import os
 import logging
 import torch
 from sklearn.metrics import f1_score, precision_score, recall_score, classification_report
@@ -112,7 +113,7 @@ class TrainTest():
         Train model and stop on basis of early stopping criterion
         '''
         no_improve_cnt = 0
-        prev_f1 = 0
+        prev_loss = 10000
         for i in range(self.max_epochs):
             print(f'\nEpoch {i+1}')
             # Train and get avg. training loss over batches
@@ -122,17 +123,20 @@ class TrainTest():
                 self.logger.info(f'Epoch: {i+1}')
                 self.logger.info(f'Train avg. loss:\t{avg_loss_tr}')
             # Validate model
-            f1_val = self.evaluate('Validation')
+            loss_val = self.evaluate('Validation')
             # Check and update early stopping
             if self.early_stopping:
-                if f1_val > (prev_f1 + 0.02):
+                # Save model if it has improved enough over current epoch
+                if loss_val < (prev_loss - 0.005):
                     no_improve_cnt = 0
-                    prev_f1 = f1_val
+                    prev_loss = loss_val
+                    torch.save(self.model.state_dict(), os.path.join('saved_models', self.model_name))
                 else:
                     no_improve_cnt += 1
                 # Early stop with no (significant) improvement for 3 epochs
                 if no_improve_cnt == 3:
-                    print(f'\n[Early stopping: no improvement for {no_improve_cnt} epochs]')
+                    print(f'\nEarly stopping: no improvement for {no_improve_cnt} epochs')
+                    print(f'Model is saved at "saved_models/{self.model_name}"')
                     break
     
     def evaluate_batch(self, batch):
@@ -173,6 +177,7 @@ class TrainTest():
             data = self.dataloader.val_dataloader
         else:
             data = self.dataloader.test_dataloader
+            self.model.load_state_dict(torch.load(os.path.join('saved_models', self.model_name)))
         total_loss = 0
         pred_list, y_list = [], []
         # Set model to evaluation mode
@@ -185,15 +190,15 @@ class TrainTest():
             pred_list += preds
             y_list += labels
         # Calculate and print metrics
-        avg_loss = total_loss/len(self.dataloader.test_dataloader)
+        avg_loss = total_loss/len(data)
         f1, precision, recall = self.get_metrics(y_list, pred_list)
         print(f'{datatype} avg. loss:\t{avg_loss}')
         print(f'{datatype} F1-score:\t{f1}')
         print(f'{datatype} precision:\t{precision}')
         print(f'{datatype} recall:\t{recall}')
         if datatype == 'Test':
-            print(f'Classification report:\n{classification_report(y_list, pred_list)}')
+            print(f'Classification report:\n{classification_report(y_list, pred_list, target_names=self.dataloader.id2label)}')
         if self.logging:
             self.log_metrics(avg_loss, f1, precision, recall, datatype)
-        return f1
+        return avg_loss
         
