@@ -9,11 +9,12 @@ The `cadec` folder contains the dataset we employed for named entity recognition
 
 ### Data processing
 Two files are dedicated to data processing for the Named Entity Recognition task:
-* `dataset_creation.py`: it contains our custom tokenization process of the text data. The text was split into token words and the labels converted to the BIO-encoding. Then                                results are then stored in the dataset.txt file, where sentences are series of words stacked on top of each other, each associated to an entity-label or 
-                         an O-label.
+* `dataset_creation.py`: it contains our custom tokenization process of the text data. The text was split into token words and the labels converted to the BIO-encoding. Then                                results are then stored in the `dataset.txt` file, where sentences are a series of words stacked on top of each other, each associated with an entity-                              label or an O-label.
                          
-* 
+* `bert_data_creation.py`: it parses `dataset.txt` and prepares the data for its submission to the PyTorch implementation of the BERT models, including the partition into                                    training, validation and test set. 
 
+### Packages
+The code is fully implemented in Python3 and the required packages to run the provided code can be extrapolated from in `requirements.txt`.
 
 ## References
 [1] Karimi S, Metke-Jimenez A, Kemp M, Wang C. Cadec: A corpus of adverse drug event annotations. J Biomed Inform. 2015 Jun;55:73-81. doi: 10.1016/j.jbi.2015.03.010. Epub 2015 Mar 27. PMID: 25817970
