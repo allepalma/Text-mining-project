@@ -12,7 +12,7 @@ class TrainTest():
                  optimizer=torch.optim.Adam,
                  learning_rate=2e-5,
                  early_stopping=True,
-                 max_epochs=30,
+                 max_epochs=40,
                  logging=True
                  ):
         # Initialize logger to store results
