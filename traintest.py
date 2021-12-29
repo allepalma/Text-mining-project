@@ -18,11 +18,7 @@ class TrainTest():
         # Initialize logger to store results
         self.logging = logging
         if self.logging:
-            self.logger = self.initialize_logger('training_logger.log')
-        
-        # Create directory to store model
-        if not os.path.exists('saved_models'):
-            os.makedirs('saved_models')
+            self.logger = self.initialize_logger(os.path.join('logging', 'training_logger.log'))
 
         # Define model and dataloader
         self.model = model
@@ -42,13 +38,13 @@ class TrainTest():
         self.max_epochs = max_epochs
 
         # Train and test
-        print(f'\nStart training for {self.model_name}...\n')
+        print(f'\n\nStart training for {self.model_name}...\n')
         if self.logging:
             self.logger.info(f'\nStart training for {self.model_name}...\n')
         self.train()
         print(f'\nTesting trained model {self.model_name}...\n')
         if self.logging:
-            self.logger.info(f'\nTesting trained model {self.model_name}...\n')
+            self.logger.info(f'\nTesting trained model {self.model_name}...')
         self.evaluate('Test')
 
     def initialize_logger(self, log_file):
@@ -202,6 +198,8 @@ class TrainTest():
         print(f'{datatype} recall:\t{recall}')
         if datatype == 'Test':
             print(f'Classification report:\n{classification_report(y_list, pred_list, target_names=self.dataloader.id2label)}')
+            if self.logging:
+                self.logger.info(f'\n{classification_report(y_list, pred_list, target_names=self.dataloader.id2label)}')
         if self.logging:
             self.log_metrics(avg_loss, f1, precision, recall, datatype)
         return avg_loss

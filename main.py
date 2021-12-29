@@ -19,14 +19,18 @@ def baseline(seed, max_length, dataset_file):
     TrainTest(bert_model, 'Baseline', data_loader, learning_rate=0.001)
 
 def bertmodels(seed, max_length, dataset_file):
-    transformers = ['bert-base-uncased', 'dmis-lab/biobert-v1.1']
+    transformers = {
+        'Bert': 'bert-base-uncased', 
+        'BioBert': 'dmis-lab/biobert-v1.1', 
+        'BioClinicalBert': 'emilyalsentzer/Bio_ClinicalBERT'
+        }
     heads = {
         'Linear': BertLinear,
         'CRF': BertCRF,
         'LSTM': BertLSTM
     }
-    for transformer in transformers:
-        for model in heads.keys():
+    for t_name, transformer in transformers.items():
+        for h_name, head in heads.items():
             # Class containing the data
             data_loader = DataProcessor(filename=dataset_file, model=transformer, seed=seed, max_length=max_length,
                                         batch_size=4)
@@ -35,9 +39,9 @@ def bertmodels(seed, max_length, dataset_file):
                                       dropout=0.1, hidden_size=768, num_clf_hidden_layers=0, num_neurons=(),
                                       activation=nn.ReLU)
             # Initialize model
-            bert_model = heads[model](config)
+            bert_model = head(config)
             # Train and test the model
-            model_name = f'{transformer}_{model}'
+            model_name = f'{t_name}_{h_name}'
             TrainTest(bert_model, model_name, data_loader)
 
 
@@ -51,6 +55,10 @@ if __name__ == '__main__':
         data_dir = 'cadec'
         c = DatasetCreator()
         c.create_dataset(data_dir, dataset_file)
-    
+
+    # Create directory to store trained models
+    if not os.path.exists('saved_models'):
+        os.makedirs('saved_models')
+
     baseline(seed, max_length, dataset_file)
     bertmodels(seed, max_length, dataset_file)
