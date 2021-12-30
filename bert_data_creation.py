@@ -52,14 +52,20 @@ class DataProcessor():
         # Training set
         self.tokenized_input_train = self.tokenizer(self.tokens_train, truncation=True, is_split_into_words=True,
                                                     add_special_tokens=True, padding=True)
+        self.tokenized_input_train = self.add_word_ids(self.tokenized_input_train)
         self.train_tags = self.get_bert_labels(self.tokenized_input_train, self.labels_train)
+        self.train_max_length = len(self.tokenized_input_train['input_ids'])  # The length of the longest training message
+
         # Validation set
         self.tokenized_input_val = self.tokenizer(self.tokens_val, truncation=True, is_split_into_words=True,
-                                                  add_special_tokens=True, padding=True)
+                                                  add_special_tokens=True, padding=True, max_length = self.train_max_length)
+        self.tokenized_input_val = self.add_word_ids(self.tokenized_input_val)
         self.val_tags = self.get_bert_labels(self.tokenized_input_val, self.labels_val)
+
         # Test set
         self.tokenized_input_test = self.tokenizer(self.tokens_test, truncation=True, is_split_into_words=True,
-                                                   add_special_tokens=True, padding=True)
+                                                   add_special_tokens=True, padding=True, max_length = self.train_max_length)
+        self.tokenized_input_test = self.add_word_ids(self.tokenized_input_test)
         self.test_tags = self.get_bert_labels(self.tokenized_input_test, self.labels_test)
 
         print('Preparing the dataset...')
@@ -139,6 +145,21 @@ class DataProcessor():
         id2lab = labels
         return lab2id, id2lab
 
+    def add_word_ids(self, tokenized_data):
+        """
+        Adds to the tokenized object the original word ids of the token to reconstruct from wordpiece
+        :param tokenized_data: A dictionary object of tokenized data
+        :return: The same tokenized data with the word ids for each sentence
+        """
+        word_ids = []
+        for i in range(len(tokenized_data['input_ids'])):
+            batch_word_id = tokenized_data.word_ids(batch_index=i)
+            # Convert Nones to 0 and augment all IDs by 1
+            batch_word_id = [i+1 if i != None else 0 for i in batch_word_id]
+            word_ids.append(batch_word_id)
+        tokenized_data['word_ids'] = word_ids
+        return tokenized_data
+
     def get_bert_labels(self, tokenized_words, labels):
         '''
         Align labels with the pre-processed token sequences
@@ -169,7 +190,8 @@ class DataProcessor():
         '''
         # Create the DataLoader for our training set
         # So now only use the inputs, not the original data anymore
-        data = TensorDataset(torch.tensor(bert_ds['input_ids']), torch.tensor(bert_ds['attention_mask']), labels)
+        data = TensorDataset(torch.tensor(bert_ds['input_ids']), torch.tensor(bert_ds['attention_mask']), labels,
+                             torch.tensor(bert_ds['word_ids']))
         sampler = RandomSampler(data)
         # For each data loader we need the data, a sampler and a batch size
         data_loader = DataLoader(dataset=data, sampler=sampler, batch_size=self.batch_size)
