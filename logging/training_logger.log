@@ -1,0 +1,1366 @@
+2021-12-29 14:13:30,518 : 
+Start training for Baseline...
+
+2021-12-29 14:20:47,459 : 
+Start training for Baseline...
+
+2021-12-29 14:25:35,360 : 
+Start training for Baseline...
+
+2021-12-29 14:30:07,285 : 
+Start training for Baseline...
+
+2021-12-29 14:35:18,459 : Epoch: 1
+2021-12-29 14:35:18,460 : Train avg. loss:	0.535132598702925
+2021-12-29 14:35:35,659 : Validation avg. loss:	0.32467933986335995
+2021-12-29 14:35:35,659 : Validation F1-score:	0.8753779368448902
+2021-12-29 14:35:35,659 : Validation precision:	0.8687933957897056
+2021-12-29 14:35:35,659 : Validation recall:	0.8878849650157016
+2021-12-29 14:40:44,940 : Epoch: 2
+2021-12-29 14:40:44,940 : Train avg. loss:	0.2721479671062344
+2021-12-29 14:41:02,052 : Validation avg. loss:	0.260068105859682
+2021-12-29 14:41:02,053 : Validation F1-score:	0.8923288792078141
+2021-12-29 14:41:02,053 : Validation precision:	0.8858082641191837
+2021-12-29 14:41:02,053 : Validation recall:	0.9022092446697152
+2021-12-29 14:46:11,186 : Epoch: 3
+2021-12-29 14:46:11,186 : Train avg. loss:	0.20134686738470176
+2021-12-29 14:46:28,278 : Validation avg. loss:	0.23834840655326844
+2021-12-29 14:46:28,278 : Validation F1-score:	0.8938156689670489
+2021-12-29 14:46:28,279 : Validation precision:	0.8892262038952498
+2021-12-29 14:46:28,279 : Validation recall:	0.9031458321855546
+2021-12-29 14:51:37,114 : Epoch: 4
+2021-12-29 14:51:37,115 : Train avg. loss:	0.1558652575787184
+2021-12-29 14:51:54,196 : Validation avg. loss:	0.22578408475965261
+2021-12-29 14:51:54,196 : Validation F1-score:	0.899673089993302
+2021-12-29 14:51:54,196 : Validation precision:	0.8957281106648937
+2021-12-29 14:51:54,196 : Validation recall:	0.9057903145832186
+2021-12-29 14:56:59,089 : Epoch: 5
+2021-12-29 14:56:59,089 : Train avg. loss:	0.12002601924549489
+2021-12-29 14:57:16,017 : Validation avg. loss:	0.22393066068179907
+2021-12-29 14:57:16,017 : Validation F1-score:	0.8972565111763341
+2021-12-29 14:57:16,017 : Validation precision:	0.895706603193613
+2021-12-29 14:57:16,017 : Validation recall:	0.9029254586524158
+2021-12-29 15:02:19,920 : Epoch: 6
+2021-12-29 15:02:19,921 : Train avg. loss:	0.08819118456194436
+2021-12-29 15:02:36,850 : Validation avg. loss:	0.2521438179537654
+2021-12-29 15:02:36,851 : Validation F1-score:	0.9007367418162366
+2021-12-29 15:02:36,851 : Validation precision:	0.8989320355622882
+2021-12-29 15:02:36,851 : Validation recall:	0.9056250344333645
+2021-12-29 15:07:41,027 : Epoch: 7
+2021-12-29 15:07:41,027 : Train avg. loss:	0.0665795999208642
+2021-12-29 15:07:57,942 : Validation avg. loss:	0.25755694434046744
+2021-12-29 15:07:57,942 : Validation F1-score:	0.8990301789009977
+2021-12-29 15:07:57,942 : Validation precision:	0.8971576474656103
+2021-12-29 15:07:57,942 : Validation recall:	0.9046884469175253
+2021-12-29 15:07:57,942 : 
+Testing trained model Baseline...
+2021-12-29 15:08:28,492 : 
+              precision    recall  f1-score   support
+
+           O       0.95      0.97      0.96     24551
+       B-ADR       0.82      0.77      0.79      1859
+       I-ADR       0.75      0.70      0.72      2567
+   B-Disease       0.49      0.23      0.31       102
+   I-Disease       0.24      0.08      0.12        48
+      B-Drug       0.89      0.95      0.92       846
+      I-Drug       0.41      0.14      0.21        64
+   B-Symptom       0.25      0.03      0.05        72
+   I-Symptom       0.00      0.00      0.00        65
+
+    accuracy                           0.93     30174
+   macro avg       0.53      0.43      0.45     30174
+weighted avg       0.92      0.93      0.92     30174
+
+2021-12-29 15:08:28,493 : Test avg. loss:	0.1835481550485369
+2021-12-29 15:08:28,493 : Test F1-score:	0.9223579775349582
+2021-12-29 15:08:28,493 : Test precision:	0.9194214357878537
+2021-12-29 15:08:28,493 : Test recall:	0.9268575594883012
+2021-12-29 15:08:28,559 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 15:08:29,725 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 15:08:29,735 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 15:08:30,130 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-12-29 15:08:30,139 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 15:08:30,534 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/tokenizer.json HTTP/1.1" 200 0
+2021-12-29 15:08:32,892 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 15:08:33,285 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 15:08:33,295 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 15:08:33,689 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-12-29 15:08:33,694 : Attempting to acquire lock 140238675275672 on /home/s2943719/.cache/huggingface/transformers/a8041bf617d7f94ea26d15e218abd04afc2004805632abc0ed2066aa16d50d04.faf6ea826ae9c5867d12b22257f9877e6b8367890837bd60f7c54a29633f7f2f.lock
+2021-12-29 15:08:33,697 : Lock 140238675275672 acquired on /home/s2943719/.cache/huggingface/transformers/a8041bf617d7f94ea26d15e218abd04afc2004805632abc0ed2066aa16d50d04.faf6ea826ae9c5867d12b22257f9877e6b8367890837bd60f7c54a29633f7f2f.lock
+2021-12-29 15:08:33,702 : Starting new HTTPS connection (1): cdn-lfs.huggingface.co:443
+2021-12-29 15:08:33,767 : https://cdn-lfs.huggingface.co:443 "GET /bert-base-uncased/097417381d6c7230bd9e3557456d726de6e83245ec8b24f529f60198a67b203a HTTP/1.1" 200 440473133
+2021-12-29 15:08:43,088 : Attempting to release lock 140238675275672 on /home/s2943719/.cache/huggingface/transformers/a8041bf617d7f94ea26d15e218abd04afc2004805632abc0ed2066aa16d50d04.faf6ea826ae9c5867d12b22257f9877e6b8367890837bd60f7c54a29633f7f2f.lock
+2021-12-29 15:08:43,089 : Lock 140238675275672 released on /home/s2943719/.cache/huggingface/transformers/a8041bf617d7f94ea26d15e218abd04afc2004805632abc0ed2066aa16d50d04.faf6ea826ae9c5867d12b22257f9877e6b8367890837bd60f7c54a29633f7f2f.lock
+2021-12-29 15:08:48,979 : 
+
+2021-12-29 16:32:26,924 : 
+Start training for Bert_Linear...
+
+2021-12-29 16:33:22,653 : Epoch: 1
+2021-12-29 16:33:22,680 : Train avg. loss:	0.3775876947834979
+2021-12-29 16:33:25,842 : Validation avg. loss:	0.27133832313120365
+2021-12-29 16:33:25,896 : Validation F1-score:	0.9044531091185063
+2021-12-29 16:33:25,921 : Validation precision:	0.9115256094646043
+2021-12-29 16:33:25,954 : Validation recall:	0.9036967660184012
+2021-12-29 16:34:23,044 : Epoch: 2
+2021-12-29 16:34:23,063 : Train avg. loss:	0.1959776769453374
+2021-12-29 16:34:26,199 : Validation avg. loss:	0.2054697424173355
+2021-12-29 16:34:26,259 : Validation F1-score:	0.9244704990971876
+2021-12-29 16:34:26,304 : Validation precision:	0.9234640563379912
+2021-12-29 16:34:26,326 : Validation recall:	0.9286540686463556
+2021-12-29 16:35:23,412 : Epoch: 3
+2021-12-29 16:35:23,446 : Train avg. loss:	0.13934023419979716
+2021-12-29 16:35:26,608 : Validation avg. loss:	0.20820044791325926
+2021-12-29 16:35:26,662 : Validation F1-score:	0.9231303240872567
+2021-12-29 16:35:26,692 : Validation precision:	0.9245051010036596
+2021-12-29 16:35:26,717 : Validation recall:	0.9248526251997136
+2021-12-29 16:36:22,494 : Epoch: 4
+2021-12-29 16:36:22,525 : Train avg. loss:	0.09684413734544749
+2021-12-29 16:36:25,681 : Validation avg. loss:	0.23394875121302902
+2021-12-29 16:36:25,742 : Validation F1-score:	0.9254841094320249
+2021-12-29 16:36:25,775 : Validation precision:	0.9261853302852028
+2021-12-29 16:36:25,796 : Validation recall:	0.9277725745138009
+2021-12-29 16:37:21,560 : Epoch: 5
+2021-12-29 16:37:21,594 : Train avg. loss:	0.06737233771106405
+2021-12-29 16:37:24,739 : Validation avg. loss:	0.2516146536916494
+2021-12-29 16:37:24,805 : Validation F1-score:	0.9274640762601705
+2021-12-29 16:37:24,850 : Validation precision:	0.9289872198183523
+2021-12-29 16:37:24,871 : Validation recall:	0.9265605200815382
+2021-12-29 16:37:24,897 : 
+Testing trained model Bert_Linear...
+2021-12-29 16:37:30,736 : 
+              precision    recall  f1-score   support
+
+           O       0.97      0.98      0.97     24551
+       B-ADR       0.80      0.88      0.84      1859
+       I-ADR       0.80      0.73      0.76      2567
+   B-Disease       0.56      0.34      0.42       102
+   I-Disease       0.50      0.02      0.04        48
+      B-Drug       0.95      0.98      0.96       846
+      I-Drug       0.67      0.64      0.66        64
+   B-Symptom       0.57      0.06      0.10        72
+   I-Symptom       0.00      0.00      0.00        65
+
+    accuracy                           0.94     30174
+   macro avg       0.65      0.51      0.53     30174
+weighted avg       0.94      0.94      0.94     30174
+
+2021-12-29 16:37:30,790 : Test avg. loss:	0.1700241339230348
+2021-12-29 16:37:30,812 : Test F1-score:	0.9370823920436178
+2021-12-29 16:37:30,843 : Test precision:	0.9361094539931656
+2021-12-29 16:37:30,871 : Test recall:	0.9404785576986809
+2021-12-29 16:37:30,904 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 16:37:31,339 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 16:37:31,411 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 16:37:31,887 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-12-29 16:37:31,957 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 16:37:32,402 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/tokenizer.json HTTP/1.1" 200 0
+2021-12-29 16:37:34,965 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 16:37:35,422 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 16:37:35,499 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 16:37:35,921 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-12-29 16:37:41,772 : 
+Start training for Bert_CRF...
+
+2021-12-29 16:43:24,415 : Epoch: 1
+2021-12-29 16:43:24,455 : Train avg. loss:	0.38737718959468126
+2021-12-29 16:43:42,516 : Validation avg. loss:	0.2323838742915541
+2021-12-29 16:43:42,542 : Validation F1-score:	0.9102684029844681
+2021-12-29 16:43:42,577 : Validation precision:	0.9050478927983846
+2021-12-29 16:43:42,609 : Validation recall:	0.9184066993554074
+2021-12-29 16:49:25,107 : Epoch: 2
+2021-12-29 16:49:25,139 : Train avg. loss:	0.19302154640347635
+2021-12-29 16:49:43,193 : Validation avg. loss:	0.20521002635359764
+2021-12-29 16:49:43,222 : Validation F1-score:	0.9223276059691247
+2021-12-29 16:49:43,280 : Validation precision:	0.92038083890915
+2021-12-29 16:49:43,302 : Validation recall:	0.9273318274475235
+2021-12-29 16:55:25,553 : Epoch: 3
+2021-12-29 16:55:25,808 : Train avg. loss:	0.14359526512260637
+2021-12-29 16:55:43,769 : Validation avg. loss:	0.2191139186732471
+2021-12-29 16:55:43,797 : Validation F1-score:	0.9281590455026522
+2021-12-29 16:55:43,868 : Validation precision:	0.9290820356392397
+2021-12-29 16:55:43,893 : Validation recall:	0.9292050024792022
+2021-12-29 17:01:23,408 : Epoch: 4
+2021-12-29 17:01:23,461 : Train avg. loss:	0.09788584023251803
+2021-12-29 17:01:41,382 : Validation avg. loss:	0.23497167038731276
+2021-12-29 17:01:41,409 : Validation F1-score:	0.9277171781781175
+2021-12-29 17:01:41,450 : Validation precision:	0.9272373890202403
+2021-12-29 17:01:41,475 : Validation recall:	0.9293702826290563
+2021-12-29 17:07:20,294 : Epoch: 5
+2021-12-29 17:07:20,330 : Train avg. loss:	0.07062793978537521
+2021-12-29 17:07:38,269 : Validation avg. loss:	0.2279946615919471
+2021-12-29 17:07:38,303 : Validation F1-score:	0.9270757609845163
+2021-12-29 17:07:38,367 : Validation precision:	0.9267703270766123
+2021-12-29 17:07:38,398 : Validation recall:	0.9282133215800782
+2021-12-29 17:07:38,423 : 
+Testing trained model Bert_CRF...
+2021-12-29 17:08:10,849 : 
+              precision    recall  f1-score   support
+
+           O       0.96      0.98      0.97     24551
+       B-ADR       0.83      0.84      0.83      1859
+       I-ADR       0.78      0.74      0.76      2567
+   B-Disease       0.65      0.32      0.43       102
+   I-Disease       0.00      0.00      0.00        48
+      B-Drug       0.94      0.98      0.96       846
+      I-Drug       0.76      0.30      0.43        64
+   B-Symptom       0.00      0.00      0.00        72
+   I-Symptom       1.00      0.06      0.12        65
+
+    accuracy                           0.94     30174
+   macro avg       0.66      0.47      0.50     30174
+weighted avg       0.93      0.94      0.93     30174
+
+2021-12-29 17:08:10,876 : Test avg. loss:	0.18480096106964444
+2021-12-29 17:08:10,918 : Test F1-score:	0.9341567980557075
+2021-12-29 17:08:10,943 : Test precision:	0.9329002096332315
+2021-12-29 17:08:11,010 : Test recall:	0.9381918207728508
+2021-12-29 17:08:11,043 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 17:08:11,531 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 17:08:11,586 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 17:08:12,013 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-12-29 17:08:12,075 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 17:08:12,495 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/tokenizer.json HTTP/1.1" 200 0
+2021-12-29 17:08:15,001 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 17:08:15,455 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 17:08:15,502 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 17:08:15,918 : https://huggingface.co:443 "HEAD /bert-base-uncased/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-12-29 17:08:21,752 : 
+Start training for Bert_LSTM...
+
+2021-12-29 17:09:26,303 : Epoch: 1
+2021-12-29 17:09:26,324 : Train avg. loss:	2.0373687048027986
+2021-12-29 17:09:29,566 : Validation avg. loss:	1.978054466843605
+2021-12-29 17:09:29,615 : Validation F1-score:	0.014522443013713712
+2021-12-29 17:09:29,638 : Validation precision:	0.007906894555838562
+2021-12-29 17:09:29,673 : Validation recall:	0.08892072062145337
+2021-12-29 17:10:35,878 : Epoch: 2
+2021-12-29 17:10:35,914 : Train avg. loss:	1.9546553592612272
+2021-12-29 17:10:39,195 : Validation avg. loss:	1.91851164996624
+2021-12-29 17:10:39,255 : Validation F1-score:	0.7331216047631687
+2021-12-29 17:10:39,272 : Validation precision:	0.6832349479213389
+2021-12-29 17:10:39,298 : Validation recall:	0.8022147540080437
+2021-12-29 17:11:45,496 : Epoch: 3
+2021-12-29 17:11:45,528 : Train avg. loss:	1.8914942241063084
+2021-12-29 17:11:48,785 : Validation avg. loss:	1.8491070091724395
+2021-12-29 17:11:48,850 : Validation F1-score:	0.7324750198193389
+2021-12-29 17:11:48,900 : Validation precision:	0.6994563880502731
+2021-12-29 17:11:48,924 : Validation recall:	0.8122417497658532
+2021-12-29 17:12:55,158 : Epoch: 4
+2021-12-29 17:12:55,192 : Train avg. loss:	1.8290450694787241
+2021-12-29 17:12:58,436 : Validation avg. loss:	1.7940704315900802
+2021-12-29 17:12:58,517 : Validation F1-score:	0.7715223710609252
+2021-12-29 17:12:58,551 : Validation precision:	0.734633543107886
+2021-12-29 17:12:58,575 : Validation recall:	0.8285493912181147
+2021-12-29 17:14:04,725 : Epoch: 5
+2021-12-29 17:14:04,758 : Train avg. loss:	1.7731942116779134
+2021-12-29 17:14:08,003 : Validation avg. loss:	1.7419393658638
+2021-12-29 17:14:08,054 : Validation F1-score:	0.751254316554764
+2021-12-29 17:14:08,074 : Validation precision:	0.7279003164912404
+2021-12-29 17:14:08,095 : Validation recall:	0.8195691697427139
+2021-12-29 17:15:14,236 : Epoch: 6
+2021-12-29 17:15:14,268 : Train avg. loss:	1.7167837893875846
+2021-12-29 17:15:17,566 : Validation avg. loss:	1.6870845347642898
+2021-12-29 17:15:17,629 : Validation F1-score:	0.7642717968102172
+2021-12-29 17:15:17,693 : Validation precision:	0.7359930447768745
+2021-12-29 17:15:17,718 : Validation recall:	0.8260701889703047
+2021-12-29 17:16:23,958 : Epoch: 7
+2021-12-29 17:16:23,978 : Train avg. loss:	1.662667002991168
+2021-12-29 17:16:27,239 : Validation avg. loss:	1.6454508543014525
+2021-12-29 17:16:27,299 : Validation F1-score:	0.7760447339538489
+2021-12-29 17:16:27,328 : Validation precision:	0.7410681871917197
+2021-12-29 17:16:27,361 : Validation recall:	0.8322406478981874
+2021-12-29 17:17:33,586 : Epoch: 8
+2021-12-29 17:17:33,618 : Train avg. loss:	1.618691737634422
+2021-12-29 17:17:36,876 : Validation avg. loss:	1.6016766428947449
+2021-12-29 17:17:36,934 : Validation F1-score:	0.7821704385522064
+2021-12-29 17:17:36,967 : Validation precision:	0.7434276273776663
+2021-12-29 17:17:36,996 : Validation recall:	0.8346647567627128
+2021-12-29 17:18:43,252 : Epoch: 9
+2021-12-29 17:18:43,276 : Train avg. loss:	1.5785167987329247
+2021-12-29 17:18:46,544 : Validation avg. loss:	1.5716085225343703
+2021-12-29 17:18:46,590 : Validation F1-score:	0.774475792608725
+2021-12-29 17:18:46,623 : Validation precision:	0.7409063331463548
+2021-12-29 17:18:46,648 : Validation recall:	0.8310836868492094
+2021-12-29 17:19:52,894 : Epoch: 10
+2021-12-29 17:19:52,917 : Train avg. loss:	1.5422035129400935
+2021-12-29 17:19:56,177 : Validation avg. loss:	1.5364174485206603
+2021-12-29 17:19:56,239 : Validation F1-score:	0.7730189429838852
+2021-12-29 17:19:56,258 : Validation precision:	0.7352985758844025
+2021-12-29 17:19:56,280 : Validation recall:	0.8278882706186987
+2021-12-29 17:21:02,589 : Epoch: 11
+2021-12-29 17:21:02,617 : Train avg. loss:	1.5094430881695156
+2021-12-29 17:21:05,890 : Validation avg. loss:	1.5030894547700882
+2021-12-29 17:21:05,947 : Validation F1-score:	0.7803478139963106
+2021-12-29 17:21:05,970 : Validation precision:	0.742189739083473
+2021-12-29 17:21:05,997 : Validation recall:	0.8333425155638807
+2021-12-29 17:22:12,256 : Epoch: 12
+2021-12-29 17:22:12,289 : Train avg. loss:	1.4713843812907699
+2021-12-29 17:22:15,546 : Validation avg. loss:	1.4586037755012513
+2021-12-29 17:22:15,603 : Validation F1-score:	0.7773371884444437
+2021-12-29 17:22:15,635 : Validation precision:	0.743137525795799
+2021-12-29 17:22:15,664 : Validation recall:	0.8330119552641728
+2021-12-29 17:23:21,826 : Epoch: 13
+2021-12-29 17:23:21,859 : Train avg. loss:	1.429098446003712
+2021-12-29 17:23:25,130 : Validation avg. loss:	1.4236908227205276
+2021-12-29 17:23:25,183 : Validation F1-score:	0.7783833218090338
+2021-12-29 17:23:25,217 : Validation precision:	0.7419679747380816
+2021-12-29 17:23:25,242 : Validation recall:	0.8326263015811801
+2021-12-29 17:24:31,398 : Epoch: 14
+2021-12-29 17:24:31,432 : Train avg. loss:	1.3966365669765612
+2021-12-29 17:24:34,687 : Validation avg. loss:	1.3994838416576385
+2021-12-29 17:24:34,748 : Validation F1-score:	0.7783724789155648
+2021-12-29 17:24:34,806 : Validation precision:	0.7448342440805776
+2021-12-29 17:24:34,832 : Validation recall:	0.8339485427800121
+2021-12-29 17:25:41,227 : Epoch: 15
+2021-12-29 17:25:41,253 : Train avg. loss:	1.3668047916280093
+2021-12-29 17:25:44,514 : Validation avg. loss:	1.3699296772480012
+2021-12-29 17:25:44,571 : Validation F1-score:	0.7845587340531821
+2021-12-29 17:25:44,600 : Validation precision:	0.7467099216490388
+2021-12-29 17:25:44,625 : Validation recall:	0.8371439590105229
+2021-12-29 17:26:50,828 : Epoch: 16
+2021-12-29 17:26:50,862 : Train avg. loss:	1.3401515692689994
+2021-12-29 17:26:54,124 : Validation avg. loss:	1.3478129148483275
+2021-12-29 17:26:54,170 : Validation F1-score:	0.7773301819671316
+2021-12-29 17:26:54,218 : Validation precision:	0.742730074223439
+2021-12-29 17:26:54,237 : Validation recall:	0.8326813949644648
+2021-12-29 17:28:00,522 : Epoch: 17
+2021-12-29 17:28:00,549 : Train avg. loss:	1.3153957311254347
+2021-12-29 17:28:03,806 : Validation avg. loss:	1.3284627884626388
+2021-12-29 17:28:03,868 : Validation F1-score:	0.7745723256711834
+2021-12-29 17:28:03,926 : Validation precision:	0.7418135820446409
+2021-12-29 17:28:03,957 : Validation recall:	0.8314142471489174
+2021-12-29 17:29:10,203 : Epoch: 18
+2021-12-29 17:29:10,233 : Train avg. loss:	1.2941653119386547
+2021-12-29 17:29:13,494 : Validation avg. loss:	1.3073484659194947
+2021-12-29 17:29:13,558 : Validation F1-score:	0.7724486371962591
+2021-12-29 17:29:13,599 : Validation precision:	0.740611435323868
+2021-12-29 17:29:13,621 : Validation recall:	0.8302021927166547
+2021-12-29 17:30:19,919 : Epoch: 19
+2021-12-29 17:30:19,947 : Train avg. loss:	1.2702163679756386
+2021-12-29 17:30:23,223 : Validation avg. loss:	1.2786393254995345
+2021-12-29 17:30:23,251 : Validation F1-score:	0.7689541877090869
+2021-12-29 17:30:23,288 : Validation precision:	0.7340308666037658
+2021-12-29 17:30:23,314 : Validation recall:	0.8262354691201587
+2021-12-29 17:31:29,523 : Epoch: 20
+2021-12-29 17:31:29,553 : Train avg. loss:	1.2492579517573337
+2021-12-29 17:31:32,843 : Validation avg. loss:	1.274555143713951
+2021-12-29 17:31:32,904 : Validation F1-score:	0.7488937841439859
+2021-12-29 17:31:32,937 : Validation precision:	0.7210341815146808
+2021-12-29 17:31:32,970 : Validation recall:	0.8167043138119112
+2021-12-29 17:32:37,895 : Epoch: 21
+2021-12-29 17:32:37,927 : Train avg. loss:	1.2296788862151822
+2021-12-29 17:32:41,184 : Validation avg. loss:	1.2397615939378739
+2021-12-29 17:32:41,242 : Validation F1-score:	0.7745375570404698
+2021-12-29 17:32:41,275 : Validation precision:	0.741331517483111
+2021-12-29 17:32:41,300 : Validation recall:	0.8311938736157788
+2021-12-29 17:33:47,573 : Epoch: 22
+2021-12-29 17:33:47,600 : Train avg. loss:	1.206217904595563
+2021-12-29 17:33:50,873 : Validation avg. loss:	1.218755915760994
+2021-12-29 17:33:50,948 : Validation F1-score:	0.7727321205394192
+2021-12-29 17:33:50,985 : Validation precision:	0.7390704026501757
+2021-12-29 17:33:51,018 : Validation recall:	0.8296512588838081
+2021-12-29 17:34:57,247 : Epoch: 23
+2021-12-29 17:34:57,274 : Train avg. loss:	1.1875135524429543
+2021-12-29 17:35:00,538 : Validation avg. loss:	1.1937468588352202
+2021-12-29 17:35:00,607 : Validation F1-score:	0.7677766347591987
+2021-12-29 17:35:00,631 : Validation precision:	0.7376958917737613
+2021-12-29 17:35:00,662 : Validation recall:	0.8273924301691367
+2021-12-29 17:36:07,014 : Epoch: 24
+2021-12-29 17:36:07,047 : Train avg. loss:	1.1637409468636895
+2021-12-29 17:36:10,336 : Validation avg. loss:	1.1846871584653855
+2021-12-29 17:36:10,396 : Validation F1-score:	0.7721121155551243
+2021-12-29 17:36:10,421 : Validation precision:	0.7392286336710873
+2021-12-29 17:36:10,446 : Validation recall:	0.8295410721172387
+2021-12-29 17:37:16,689 : Epoch: 25
+2021-12-29 17:37:16,719 : Train avg. loss:	1.1471157996323857
+2021-12-29 17:37:19,984 : Validation avg. loss:	1.164349377155304
+2021-12-29 17:37:20,052 : Validation F1-score:	0.7646996582654889
+2021-12-29 17:37:20,110 : Validation precision:	0.7360335795680459
+2021-12-29 17:37:20,135 : Validation recall:	0.825684535287312
+2021-12-29 17:38:26,388 : Epoch: 26
+2021-12-29 17:38:26,416 : Train avg. loss:	1.1302933608093402
+2021-12-29 17:38:29,682 : Validation avg. loss:	1.15286336094141
+2021-12-29 17:38:29,733 : Validation F1-score:	0.7635675663502851
+2021-12-29 17:38:29,764 : Validation precision:	0.7352588977861572
+2021-12-29 17:38:29,789 : Validation recall:	0.8252437882210346
+2021-12-29 17:39:36,041 : Epoch: 27
+2021-12-29 17:39:36,072 : Train avg. loss:	1.1196918600667132
+2021-12-29 17:39:39,338 : Validation avg. loss:	1.1413019001483917
+2021-12-29 17:39:39,398 : Validation F1-score:	0.7701951216314642
+2021-12-29 17:39:39,423 : Validation precision:	0.7366475665314663
+2021-12-29 17:39:39,448 : Validation recall:	0.8279433640019833
+2021-12-29 17:40:45,797 : Epoch: 28
+2021-12-29 17:40:45,830 : Train avg. loss:	1.1068446751493608
+2021-12-29 17:40:49,092 : Validation avg. loss:	1.1324125468730926
+2021-12-29 17:40:49,137 : Validation F1-score:	0.7713265990478574
+2021-12-29 17:40:49,187 : Validation precision:	0.7384029534630783
+2021-12-29 17:40:49,212 : Validation recall:	0.8288799515178227
+2021-12-29 17:41:55,453 : Epoch: 29
+2021-12-29 17:41:55,486 : Train avg. loss:	1.0961543143230632
+2021-12-29 17:41:58,751 : Validation avg. loss:	1.1184446036815643
+2021-12-29 17:41:58,816 : Validation F1-score:	0.7598252411827873
+2021-12-29 17:41:58,877 : Validation precision:	0.734575027330741
+2021-12-29 17:41:58,907 : Validation recall:	0.82353589333921
+2021-12-29 17:43:05,191 : Epoch: 30
+2021-12-29 17:43:05,225 : Train avg. loss:	1.0879783889237982
+2021-12-29 17:43:08,515 : Validation avg. loss:	1.1201830059289932
+2021-12-29 17:43:08,580 : Validation F1-score:	0.7671037233220288
+2021-12-29 17:43:08,613 : Validation precision:	0.7368699396981467
+2021-12-29 17:43:08,633 : Validation recall:	0.8269516831028594
+2021-12-29 17:44:13,653 : Epoch: 31
+2021-12-29 17:44:13,682 : Train avg. loss:	1.0775115616130133
+2021-12-29 17:44:16,950 : Validation avg. loss:	1.105713890492916
+2021-12-29 17:44:17,006 : Validation F1-score:	0.7673390197270659
+2021-12-29 17:44:17,073 : Validation precision:	0.7340379061575871
+2021-12-29 17:44:17,094 : Validation recall:	0.8259600022037353
+2021-12-29 17:45:23,558 : Epoch: 32
+2021-12-29 17:45:23,588 : Train avg. loss:	1.0662744334579384
+2021-12-29 17:45:26,900 : Validation avg. loss:	1.0938179686665535
+2021-12-29 17:45:26,958 : Validation F1-score:	0.7647216344074527
+2021-12-29 17:45:26,988 : Validation precision:	0.7342344163689029
+2021-12-29 17:45:27,013 : Validation recall:	0.82518869483775
+2021-12-29 17:46:33,386 : Epoch: 33
+2021-12-29 17:46:33,414 : Train avg. loss:	1.0564609829091678
+2021-12-29 17:46:36,717 : Validation avg. loss:	1.083723621070385
+2021-12-29 17:46:36,777 : Validation F1-score:	0.7691765548150279
+2021-12-29 17:46:36,822 : Validation precision:	0.7336360499431628
+2021-12-29 17:46:36,875 : Validation recall:	0.826345655886728
+2021-12-29 17:47:43,186 : Epoch: 34
+2021-12-29 17:47:43,227 : Train avg. loss:	1.0455322600629209
+2021-12-29 17:47:46,500 : Validation avg. loss:	1.0733661025762558
+2021-12-29 17:47:46,556 : Validation F1-score:	0.7746600982227421
+2021-12-29 17:47:46,589 : Validation precision:	0.73760454170703
+2021-12-29 17:47:46,614 : Validation recall:	0.83014709933337
+2021-12-29 17:48:52,878 : Epoch: 35
+2021-12-29 17:48:52,900 : Train avg. loss:	1.0334811863237925
+2021-12-29 17:48:56,165 : Validation avg. loss:	1.0644560024142264
+2021-12-29 17:48:56,228 : Validation F1-score:	0.7757300540374364
+2021-12-29 17:48:56,257 : Validation precision:	0.7407650491812711
+2021-12-29 17:48:56,287 : Validation recall:	0.8315795272987714
+2021-12-29 17:50:02,517 : Epoch: 36
+2021-12-29 17:50:02,547 : Train avg. loss:	1.022879775423203
+2021-12-29 17:50:05,809 : Validation avg. loss:	1.05136636197567
+2021-12-29 17:50:05,863 : Validation F1-score:	0.7800231895165657
+2021-12-29 17:50:05,888 : Validation precision:	0.7437060740653832
+2021-12-29 17:50:05,913 : Validation recall:	0.8339485427800121
+2021-12-29 17:51:12,212 : Epoch: 37
+2021-12-29 17:51:12,245 : Train avg. loss:	1.010915909587902
+2021-12-29 17:51:15,517 : Validation avg. loss:	1.0336640059947968
+2021-12-29 17:51:15,586 : Validation F1-score:	0.7834033789741144
+2021-12-29 17:51:15,619 : Validation precision:	0.7452104477316968
+2021-12-29 17:51:15,652 : Validation recall:	0.8360971847281141
+2021-12-29 17:52:21,886 : Epoch: 38
+2021-12-29 17:52:21,922 : Train avg. loss:	1.0058287636642038
+2021-12-29 17:52:25,173 : Validation avg. loss:	1.0326778069138527
+2021-12-29 17:52:25,224 : Validation F1-score:	0.7797278147048275
+2021-12-29 17:52:25,258 : Validation precision:	0.7442707182742331
+2021-12-29 17:52:25,291 : Validation recall:	0.8344994766128588
+2021-12-29 17:53:30,332 : Epoch: 39
+2021-12-29 17:53:30,358 : Train avg. loss:	0.9959169064995146
+2021-12-29 17:53:33,622 : Validation avg. loss:	1.0303529307246209
+2021-12-29 17:53:33,680 : Validation F1-score:	0.781385038838021
+2021-12-29 17:53:33,711 : Validation precision:	0.803377128823295
+2021-12-29 17:53:33,741 : Validation recall:	0.8325161148146107
+2021-12-29 17:54:38,805 : Epoch: 40
+2021-12-29 17:54:38,834 : Train avg. loss:	0.9889323074017128
+2021-12-29 17:54:42,099 : Validation avg. loss:	1.0150571018457413
+2021-12-29 17:54:42,158 : Validation F1-score:	0.7788378603908656
+2021-12-29 17:54:42,227 : Validation precision:	0.7395983645636753
+2021-12-29 17:54:42,258 : Validation recall:	0.8312489669990634
+2021-12-29 17:54:43,317 : 
+Testing trained model Bert_LSTM...
+2021-12-29 17:54:49,694 : 
+              precision    recall  f1-score   support
+
+           O       0.85      0.99      0.91     24551
+       B-ADR       0.00      0.00      0.00      1859
+       I-ADR       0.75      0.45      0.56      2567
+   B-Disease       0.00      0.00      0.00       102
+   I-Disease       0.00      0.00      0.00        48
+      B-Drug       0.00      0.00      0.00       846
+      I-Drug       0.00      0.00      0.00        64
+   B-Symptom       0.00      0.00      0.00        72
+   I-Symptom       0.00      0.00      0.00        65
+
+    accuracy                           0.84     30174
+   macro avg       0.18      0.16      0.16     30174
+weighted avg       0.75      0.84      0.79     30174
+
+2021-12-29 17:54:49,724 : Test avg. loss:	1.0013974696870833
+2021-12-29 17:54:49,766 : Test F1-score:	0.7901338297024895
+2021-12-29 17:54:49,797 : Test precision:	0.7529478187130783
+2021-12-29 17:54:49,822 : Test recall:	0.8422151521177172
+
+
+2021-12-29 20:05:16,673 : 
+Start training for BioBert_Linear...
+
+2021-12-29 20:06:28,699 : Epoch: 1
+2021-12-29 20:06:28,699 : Train avg. loss:	0.3754889905779031
+2021-12-29 20:06:32,630 : Validation avg. loss:	0.24015823118388652
+2021-12-29 20:06:32,630 : Validation F1-score:	0.9102659735042965
+2021-12-29 20:06:32,630 : Validation precision:	0.9068592640725125
+2021-12-29 20:06:32,630 : Validation recall:	0.9178279196627821
+2021-12-29 20:07:45,304 : Epoch: 2
+2021-12-29 20:07:45,304 : Train avg. loss:	0.19868489802155617
+2021-12-29 20:07:49,247 : Validation avg. loss:	0.226264164224267
+2021-12-29 20:07:49,247 : Validation F1-score:	0.9137679032884277
+2021-12-29 20:07:49,247 : Validation precision:	0.9207430749931017
+2021-12-29 20:07:49,247 : Validation recall:	0.9161914207785767
+2021-12-29 20:09:01,941 : Epoch: 3
+2021-12-29 20:09:01,941 : Train avg. loss:	0.14386573081740933
+2021-12-29 20:09:05,881 : Validation avg. loss:	0.23961814474314452
+2021-12-29 20:09:05,882 : Validation F1-score:	0.9170619620940398
+2021-12-29 20:09:05,882 : Validation precision:	0.9191538036687298
+2021-12-29 20:09:05,882 : Validation recall:	0.9233820976940244
+2021-12-29 20:10:17,931 : Epoch: 4
+2021-12-29 20:10:17,932 : Train avg. loss:	0.10124741911711375
+2021-12-29 20:10:21,860 : Validation avg. loss:	0.25021825917065144
+2021-12-29 20:10:21,861 : Validation F1-score:	0.9242075237002171
+2021-12-29 20:10:21,861 : Validation precision:	0.9244671142551738
+2021-12-29 20:10:21,861 : Validation recall:	0.9258120505826928
+2021-12-29 20:11:33,905 : Epoch: 5
+2021-12-29 20:11:33,905 : Train avg. loss:	0.07963716261935196
+2021-12-29 20:11:37,843 : Validation avg. loss:	0.2581077710725367
+2021-12-29 20:11:37,843 : Validation F1-score:	0.926498277149879
+2021-12-29 20:11:37,843 : Validation precision:	0.9261379167439563
+2021-12-29 20:11:37,843 : Validation recall:	0.927547731217456
+2021-12-29 20:11:37,844 : 
+Testing trained model BioBert_Linear...
+2021-12-29 20:11:45,078 : 
+              precision    recall  f1-score   support
+
+           O       0.97      0.96      0.96     25102
+       B-ADR       0.79      0.86      0.82      2091
+       I-ADR       0.70      0.82      0.75      2608
+   B-Disease       1.00      0.17      0.30       161
+   I-Disease       0.67      0.07      0.12        60
+      B-Drug       1.00      0.94      0.97      1028
+      I-Drug       0.45      0.76      0.57        46
+   B-Symptom       0.88      0.20      0.32        71
+   I-Symptom       1.00      0.01      0.03        77
+
+    accuracy                           0.93     31244
+   macro avg       0.83      0.53      0.54     31244
+weighted avg       0.93      0.93      0.93     31244
+
+2021-12-29 20:11:45,078 : Test avg. loss:	0.19747078584300148
+2021-12-29 20:11:45,078 : Test F1-score:	0.9277411632440178
+2021-12-29 20:11:45,078 : Test precision:	0.9344662377519608
+2021-12-29 20:11:45,078 : Test recall:	0.9294904621687364
+2021-12-29 20:11:45,081 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:45,823 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2021-12-29 20:11:45,827 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:46,538 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 20:11:46,542 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:49,178 : https://huggingface.co:443 "GET /api/models/dmis-lab/biobert-v1.1 HTTP/1.1" 200 703
+2021-12-29 20:11:49,181 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:49,897 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-12-29 20:11:49,900 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:50,612 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/tokenizer.json HTTP/1.1" 404 0
+2021-12-29 20:11:50,615 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:51,323 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2021-12-29 20:11:51,326 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:52,036 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/special_tokens_map.json HTTP/1.1" 200 0
+2021-12-29 20:11:52,039 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:52,753 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2021-12-29 20:11:52,756 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:53,467 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 20:11:53,567 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:54,263 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 20:11:55,745 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:56,435 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 20:11:56,440 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:11:57,164 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-12-29 20:11:58,144 : 
+Start training for BioBert_CRF...
+
+2021-12-29 20:15:20,571 : Epoch: 1
+2021-12-29 20:15:20,571 : Train avg. loss:	0.37953105857119945
+2021-12-29 20:15:30,716 : Validation avg. loss:	0.2578950244933367
+2021-12-29 20:15:30,716 : Validation F1-score:	0.9076759300066205
+2021-12-29 20:15:30,716 : Validation precision:	0.9061219353283003
+2021-12-29 20:15:30,716 : Validation recall:	0.915893875526903
+2021-12-29 20:18:53,304 : Epoch: 2
+2021-12-29 20:18:53,305 : Train avg. loss:	0.19471565500092114
+2021-12-29 20:19:03,421 : Validation avg. loss:	0.2454910697415471
+2021-12-29 20:19:03,421 : Validation F1-score:	0.9130832212957001
+2021-12-29 20:19:03,421 : Validation precision:	0.9199464151431351
+2021-12-29 20:19:03,421 : Validation recall:	0.9119266055045872
+2021-12-29 20:22:25,924 : Epoch: 3
+2021-12-29 20:22:25,924 : Train avg. loss:	0.14340480165148195
+2021-12-29 20:22:36,040 : Validation avg. loss:	0.25035346038639544
+2021-12-29 20:22:36,040 : Validation F1-score:	0.9196599612938969
+2021-12-29 20:22:36,040 : Validation precision:	0.91953778909329
+2021-12-29 20:22:36,040 : Validation recall:	0.9223406893131664
+2021-12-29 20:25:57,791 : Epoch: 4
+2021-12-29 20:25:57,791 : Train avg. loss:	0.10342714909029051
+2021-12-29 20:26:07,899 : Validation avg. loss:	0.2475892271846533
+2021-12-29 20:26:07,899 : Validation F1-score:	0.9240048325315142
+2021-12-29 20:26:07,900 : Validation precision:	0.9242866232704885
+2021-12-29 20:26:07,900 : Validation recall:	0.925613687081577
+2021-12-29 20:29:29,470 : Epoch: 5
+2021-12-29 20:29:29,470 : Train avg. loss:	0.0736541844272211
+2021-12-29 20:29:39,568 : Validation avg. loss:	0.2828241463750601
+2021-12-29 20:29:39,568 : Validation F1-score:	0.9223865264909474
+2021-12-29 20:29:39,568 : Validation precision:	0.9222498836663392
+2021-12-29 20:29:39,568 : Validation recall:	0.9234812794445822
+2021-12-29 20:29:39,569 : 
+Testing trained model BioBert_CRF...
+2021-12-29 20:29:58,018 : 
+              precision    recall  f1-score   support
+
+           O       0.97      0.95      0.96     25102
+       B-ADR       0.85      0.78      0.81      2091
+       I-ADR       0.66      0.86      0.75      2608
+   B-Disease       0.47      0.52      0.49       161
+   I-Disease       0.48      0.25      0.33        60
+      B-Drug       0.97      0.97      0.97      1028
+      I-Drug       0.69      0.43      0.53        46
+   B-Symptom       0.32      0.17      0.22        71
+   I-Symptom       1.00      0.03      0.05        77
+
+    accuracy                           0.93     31244
+   macro avg       0.71      0.55      0.57     31244
+weighted avg       0.93      0.93      0.93     31244
+
+2021-12-29 20:29:58,019 : Test avg. loss:	0.2000717188394259
+2021-12-29 20:29:58,019 : Test F1-score:	0.9274808043646267
+2021-12-29 20:29:58,019 : Test precision:	0.933155979401725
+2021-12-29 20:29:58,019 : Test recall:	0.9269619766995263
+2021-12-29 20:29:58,022 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:29:58,738 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2021-12-29 20:29:58,741 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:29:59,450 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 20:29:59,454 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:00,168 : https://huggingface.co:443 "GET /api/models/dmis-lab/biobert-v1.1 HTTP/1.1" 200 703
+2021-12-29 20:30:00,172 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:00,860 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-12-29 20:30:00,863 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:01,593 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/tokenizer.json HTTP/1.1" 404 0
+2021-12-29 20:30:01,596 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:02,301 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2021-12-29 20:30:02,304 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:02,990 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/special_tokens_map.json HTTP/1.1" 200 0
+2021-12-29 20:30:02,993 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:03,704 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2021-12-29 20:30:03,708 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:04,432 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 20:30:04,456 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:05,170 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 20:30:06,696 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:07,397 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 20:30:07,402 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 20:30:08,109 : https://huggingface.co:443 "HEAD /dmis-lab/biobert-v1.1/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-12-29 20:30:09,093 : 
+Start training for BioBert_LSTM...
+
+2021-12-29 20:31:25,769 : Epoch: 1
+2021-12-29 20:31:25,769 : Train avg. loss:	1.8881482582022673
+2021-12-29 20:31:29,871 : Validation avg. loss:	1.838460800051689
+2021-12-29 20:31:29,871 : Validation F1-score:	0.710905408404578
+2021-12-29 20:31:29,871 : Validation precision:	0.6397619859319552
+2021-12-29 20:31:29,871 : Validation recall:	0.7998512273741631
+2021-12-29 20:32:47,477 : Epoch: 2
+2021-12-29 20:32:47,478 : Train avg. loss:	1.8049605440919416
+2021-12-29 20:32:51,595 : Validation avg. loss:	1.7511844724416732
+2021-12-29 20:32:51,595 : Validation F1-score:	0.710905408404578
+2021-12-29 20:32:51,595 : Validation precision:	0.6397619859319552
+2021-12-29 20:32:51,595 : Validation recall:	0.7998512273741631
+2021-12-29 20:34:09,301 : Epoch: 3
+2021-12-29 20:34:09,301 : Train avg. loss:	1.7209247546474429
+2021-12-29 20:34:13,418 : Validation avg. loss:	1.665632990002632
+2021-12-29 20:34:13,418 : Validation F1-score:	0.710905408404578
+2021-12-29 20:34:13,418 : Validation precision:	0.6397619859319552
+2021-12-29 20:34:13,418 : Validation recall:	0.7998512273741631
+2021-12-29 20:35:31,178 : Epoch: 4
+2021-12-29 20:35:31,178 : Train avg. loss:	1.6387357498607495
+2021-12-29 20:35:35,295 : Validation avg. loss:	1.5948181182146073
+2021-12-29 20:35:35,295 : Validation F1-score:	0.7109730096717656
+2021-12-29 20:35:35,295 : Validation precision:	0.6419763655197922
+2021-12-29 20:35:35,295 : Validation recall:	0.7998016364988842
+2021-12-29 20:36:53,094 : Epoch: 5
+2021-12-29 20:36:53,095 : Train avg. loss:	1.5744166056605151
+2021-12-29 20:36:57,216 : Validation avg. loss:	1.5394807368516923
+2021-12-29 20:36:57,216 : Validation F1-score:	0.7111245863136553
+2021-12-29 20:36:57,216 : Validation precision:	0.642071575277724
+2021-12-29 20:36:57,216 : Validation recall:	0.7998512273741631
+2021-12-29 20:38:15,023 : Epoch: 6
+2021-12-29 20:38:15,023 : Train avg. loss:	1.5188746447980839
+2021-12-29 20:38:19,149 : Validation avg. loss:	1.479476746916771
+2021-12-29 20:38:19,149 : Validation F1-score:	0.7112285433923743
+2021-12-29 20:38:19,149 : Validation precision:	0.6447959331546683
+2021-12-29 20:38:19,150 : Validation recall:	0.799950409124721
+2021-12-29 20:39:36,994 : Epoch: 7
+2021-12-29 20:39:36,994 : Train avg. loss:	1.4568608781717118
+2021-12-29 20:39:41,111 : Validation avg. loss:	1.4232811212539673
+2021-12-29 20:39:41,111 : Validation F1-score:	0.712191966105065
+2021-12-29 20:39:41,111 : Validation precision:	0.6693697827496932
+2021-12-29 20:39:41,111 : Validation recall:	0.8003967270022316
+2021-12-29 20:40:58,930 : Epoch: 8
+2021-12-29 20:40:58,931 : Train avg. loss:	1.3994494150154781
+2021-12-29 20:41:03,050 : Validation avg. loss:	1.3660813868045807
+2021-12-29 20:41:03,051 : Validation F1-score:	0.711495100394057
+2021-12-29 20:41:03,051 : Validation precision:	0.6691792734739983
+2021-12-29 20:41:03,051 : Validation recall:	0.8000991817505579
+2021-12-29 20:42:20,858 : Epoch: 9
+2021-12-29 20:42:20,858 : Train avg. loss:	1.3497069678167357
+2021-12-29 20:42:24,991 : Validation avg. loss:	1.3175189048051834
+2021-12-29 20:42:24,991 : Validation F1-score:	0.7113778221149272
+2021-12-29 20:42:24,991 : Validation precision:	0.6691475329523446
+2021-12-29 20:42:24,991 : Validation recall:	0.8000495908752789
+2021-12-29 20:43:42,842 : Epoch: 10
+2021-12-29 20:43:42,842 : Train avg. loss:	1.3057334940798961
+2021-12-29 20:43:46,971 : Validation avg. loss:	1.2854673713445663
+2021-12-29 20:43:46,971 : Validation F1-score:	0.7110240102832357
+2021-12-29 20:43:46,972 : Validation precision:	0.6690523302768033
+2021-12-29 20:43:46,972 : Validation recall:	0.7999008182494421
+2021-12-29 20:45:04,796 : Epoch: 11
+2021-12-29 20:45:04,796 : Train avg. loss:	1.263194075031002
+2021-12-29 20:45:08,935 : Validation avg. loss:	1.2446130841970444
+2021-12-29 20:45:08,935 : Validation F1-score:	0.711495100394057
+2021-12-29 20:45:08,935 : Validation precision:	0.6691792734739983
+2021-12-29 20:45:08,935 : Validation recall:	0.8000991817505579
+2021-12-29 20:46:26,803 : Epoch: 12
+2021-12-29 20:46:26,803 : Train avg. loss:	1.2292512224538483
+2021-12-29 20:46:30,949 : Validation avg. loss:	1.217042827606201
+2021-12-29 20:46:30,949 : Validation F1-score:	0.7111422787348358
+2021-12-29 20:46:30,949 : Validation precision:	0.6690840613542156
+2021-12-29 20:46:30,949 : Validation recall:	0.799950409124721
+2021-12-29 20:47:48,901 : Epoch: 13
+2021-12-29 20:47:48,901 : Train avg. loss:	1.1985149487961817
+2021-12-29 20:47:53,034 : Validation avg. loss:	1.1856424152851104
+2021-12-29 20:47:53,034 : Validation F1-score:	0.710905408404578
+2021-12-29 20:47:53,034 : Validation precision:	0.6397619859319552
+2021-12-29 20:47:53,035 : Validation recall:	0.7998512273741631
+2021-12-29 20:49:11,015 : Epoch: 14
+2021-12-29 20:49:11,015 : Train avg. loss:	1.1724020729969888
+2021-12-29 20:49:15,159 : Validation avg. loss:	1.1703846126794815
+2021-12-29 20:49:15,159 : Validation F1-score:	0.7110240102832357
+2021-12-29 20:49:15,159 : Validation precision:	0.6690523302768033
+2021-12-29 20:49:15,160 : Validation recall:	0.7999008182494421
+2021-12-29 20:50:33,145 : Epoch: 15
+2021-12-29 20:50:33,145 : Train avg. loss:	1.1503580717274742
+2021-12-29 20:50:37,289 : Validation avg. loss:	1.1597785383462906
+2021-12-29 20:50:37,289 : Validation F1-score:	0.710905408404578
+2021-12-29 20:50:37,289 : Validation precision:	0.6397619859319552
+2021-12-29 20:50:37,289 : Validation recall:	0.7998512273741631
+2021-12-29 20:51:55,303 : Epoch: 16
+2021-12-29 20:51:55,303 : Train avg. loss:	1.12822731676763
+2021-12-29 20:51:59,448 : Validation avg. loss:	1.137774443626404
+2021-12-29 20:51:59,448 : Validation F1-score:	0.7110234379411391
+2021-12-29 20:51:59,448 : Validation precision:	0.6463893002743238
+2021-12-29 20:51:59,448 : Validation recall:	0.7999008182494421
+2021-12-29 20:53:17,501 : Epoch: 17
+2021-12-29 20:53:17,501 : Train avg. loss:	1.10809342487015
+2021-12-29 20:53:21,636 : Validation avg. loss:	1.1205308467149735
+2021-12-29 20:53:21,636 : Validation F1-score:	0.7111422787348358
+2021-12-29 20:53:21,636 : Validation precision:	0.6690840613542156
+2021-12-29 20:53:21,636 : Validation recall:	0.799950409124721
+2021-12-29 20:54:39,663 : Epoch: 18
+2021-12-29 20:54:39,663 : Train avg. loss:	1.090680282046325
+2021-12-29 20:54:43,794 : Validation avg. loss:	1.1224226906895638
+2021-12-29 20:54:43,794 : Validation F1-score:	0.7113778221149272
+2021-12-29 20:54:43,794 : Validation precision:	0.6691475329523446
+2021-12-29 20:54:43,794 : Validation recall:	0.8000495908752789
+2021-12-29 20:56:01,167 : Epoch: 19
+2021-12-29 20:56:01,167 : Train avg. loss:	1.0759907288707955
+2021-12-29 20:56:05,300 : Validation avg. loss:	1.0930135622620583
+2021-12-29 20:56:05,300 : Validation F1-score:	0.7120962224351558
+2021-12-29 20:56:05,301 : Validation precision:	0.6693697827496932
+2021-12-29 20:56:05,301 : Validation recall:	0.8003471361269526
+2021-12-29 20:57:23,312 : Epoch: 20
+2021-12-29 20:57:23,312 : Train avg. loss:	1.0668720777017358
+2021-12-29 20:57:27,454 : Validation avg. loss:	1.0870365545153617
+2021-12-29 20:57:27,454 : Validation F1-score:	0.7116099056203139
+2021-12-29 20:57:27,454 : Validation precision:	0.7036756957511603
+2021-12-29 20:57:27,454 : Validation recall:	0.8000991817505579
+2021-12-29 20:58:45,447 : Epoch: 21
+2021-12-29 20:58:45,447 : Train avg. loss:	1.0516766074800143
+2021-12-29 20:58:49,581 : Validation avg. loss:	1.0670054972171783
+2021-12-29 20:58:49,581 : Validation F1-score:	0.7134892096159182
+2021-12-29 20:58:49,581 : Validation precision:	0.7071821945954831
+2021-12-29 20:58:49,581 : Validation recall:	0.8007934540044632
+2021-12-29 21:00:07,582 : Epoch: 22
+2021-12-29 21:00:07,582 : Train avg. loss:	1.0379096576332176
+2021-12-29 21:00:11,712 : Validation avg. loss:	1.0569817289710044
+2021-12-29 21:00:11,712 : Validation F1-score:	0.7129338287065466
+2021-12-29 21:00:11,712 : Validation precision:	0.7387053292536925
+2021-12-29 21:00:11,712 : Validation recall:	0.8005950905033474
+2021-12-29 21:01:29,709 : Epoch: 23
+2021-12-29 21:01:29,709 : Train avg. loss:	1.0285759233210208
+2021-12-29 21:01:33,840 : Validation avg. loss:	1.0434275642037392
+2021-12-29 21:01:33,841 : Validation F1-score:	0.7139447627588906
+2021-12-29 21:01:33,841 : Validation precision:	0.7042955007825618
+2021-12-29 21:01:33,841 : Validation recall:	0.8010414083808579
+2021-12-29 21:02:51,827 : Epoch: 24
+2021-12-29 21:02:51,828 : Train avg. loss:	1.0197327722163096
+2021-12-29 21:02:55,968 : Validation avg. loss:	1.044378547370434
+2021-12-29 21:02:55,968 : Validation F1-score:	0.7143611082191066
+2021-12-29 21:02:55,968 : Validation precision:	0.7083771909785439
+2021-12-29 21:02:55,969 : Validation recall:	0.8010909992561369
+2021-12-29 21:04:13,343 : Epoch: 25
+2021-12-29 21:04:13,343 : Train avg. loss:	1.007840592060646
+2021-12-29 21:04:17,474 : Validation avg. loss:	1.0260258927941321
+2021-12-29 21:04:17,475 : Validation F1-score:	0.7190835976845603
+2021-12-29 21:04:17,475 : Validation precision:	0.7113224114245472
+2021-12-29 21:04:17,475 : Validation recall:	0.8034713612695265
+2021-12-29 21:05:37,148 : Epoch: 26
+2021-12-29 21:05:37,148 : Train avg. loss:	1.001220553895853
+2021-12-29 21:05:41,432 : Validation avg. loss:	1.026925377547741
+2021-12-29 21:05:41,432 : Validation F1-score:	0.716472184589569
+2021-12-29 21:05:41,432 : Validation precision:	0.7185039603471254
+2021-12-29 21:05:41,432 : Validation recall:	0.8021324076369948
+2021-12-29 21:07:02,444 : Epoch: 27
+2021-12-29 21:07:02,444 : Train avg. loss:	0.9912632769041688
+2021-12-29 21:07:06,801 : Validation avg. loss:	1.0139567404985428
+2021-12-29 21:07:06,801 : Validation F1-score:	0.7170693442188193
+2021-12-29 21:07:06,801 : Validation precision:	0.7289957041219843
+2021-12-29 21:07:06,801 : Validation recall:	0.8023803620133896
+2021-12-29 21:08:26,447 : Epoch: 28
+2021-12-29 21:08:26,447 : Train avg. loss:	0.9845038128160212
+2021-12-29 21:08:30,622 : Validation avg. loss:	1.0117188706994056
+2021-12-29 21:08:30,622 : Validation F1-score:	0.7184948171864576
+2021-12-29 21:08:30,622 : Validation precision:	0.7190528035011893
+2021-12-29 21:08:30,622 : Validation recall:	0.8028266798909001
+2021-12-29 21:09:47,845 : Epoch: 29
+2021-12-29 21:09:47,845 : Train avg. loss:	0.9782593783235898
+2021-12-29 21:09:52,007 : Validation avg. loss:	1.0138518288731575
+2021-12-29 21:09:52,007 : Validation F1-score:	0.7190095969672314
+2021-12-29 21:09:52,008 : Validation precision:	0.7223022159596093
+2021-12-29 21:09:52,008 : Validation recall:	0.802925861641458
+2021-12-29 21:11:10,107 : Epoch: 30
+2021-12-29 21:11:10,107 : Train avg. loss:	0.974609384789084
+2021-12-29 21:11:14,290 : Validation avg. loss:	1.0074579671025277
+2021-12-29 21:11:14,290 : Validation F1-score:	0.7274932411347217
+2021-12-29 21:11:14,290 : Validation precision:	0.7312762502739103
+2021-12-29 21:11:14,290 : Validation recall:	0.806793949913216
+2021-12-29 21:12:34,266 : Epoch: 31
+2021-12-29 21:12:34,266 : Train avg. loss:	0.9664174638090343
+2021-12-29 21:12:38,414 : Validation avg. loss:	0.997803008556366
+2021-12-29 21:12:38,414 : Validation F1-score:	0.7243736334234477
+2021-12-29 21:12:38,415 : Validation precision:	0.7806641122075276
+2021-12-29 21:12:38,415 : Validation recall:	0.8057525415323581
+2021-12-29 21:13:56,457 : Epoch: 32
+2021-12-29 21:13:56,458 : Train avg. loss:	0.9613775756672351
+2021-12-29 21:14:00,590 : Validation avg. loss:	0.9965650185942649
+2021-12-29 21:14:00,590 : Validation F1-score:	0.7209698609867138
+2021-12-29 21:14:00,590 : Validation precision:	0.7274214690153212
+2021-12-29 21:14:00,590 : Validation recall:	0.8037689065212001
+2021-12-29 21:15:20,322 : Epoch: 33
+2021-12-29 21:15:20,322 : Train avg. loss:	0.9581416090474512
+2021-12-29 21:15:24,541 : Validation avg. loss:	0.9933161810040474
+2021-12-29 21:15:24,541 : Validation F1-score:	0.7210312356743087
+2021-12-29 21:15:24,541 : Validation precision:	0.7349304905329491
+2021-12-29 21:15:24,541 : Validation recall:	0.803868088271758
+2021-12-29 21:16:42,816 : Epoch: 34
+2021-12-29 21:16:42,816 : Train avg. loss:	0.9548351468831083
+2021-12-29 21:16:47,052 : Validation avg. loss:	0.9882177323102951
+2021-12-29 21:16:47,052 : Validation F1-score:	0.720656726709914
+2021-12-29 21:16:47,052 : Validation precision:	0.7284197904251342
+2021-12-29 21:16:47,052 : Validation recall:	0.8036201338953632
+2021-12-29 21:18:06,528 : Epoch: 35
+2021-12-29 21:18:06,528 : Train avg. loss:	0.9502009729834369
+2021-12-29 21:18:10,950 : Validation avg. loss:	0.984904159605503
+2021-12-29 21:18:10,950 : Validation F1-score:	0.7182331683068762
+2021-12-29 21:18:10,950 : Validation precision:	0.7252390235392189
+2021-12-29 21:18:10,950 : Validation recall:	0.8025787255145054
+2021-12-29 21:19:29,886 : Epoch: 36
+2021-12-29 21:19:29,886 : Train avg. loss:	0.9472572335796635
+2021-12-29 21:19:34,104 : Validation avg. loss:	0.9786684468388558
+2021-12-29 21:19:34,104 : Validation F1-score:	0.7224297631805215
+2021-12-29 21:19:34,104 : Validation precision:	0.7228645269156737
+2021-12-29 21:19:34,104 : Validation recall:	0.804859905777337
+2021-12-29 21:20:52,789 : Epoch: 37
+2021-12-29 21:20:52,790 : Train avg. loss:	0.9424227056277059
+2021-12-29 21:20:56,952 : Validation avg. loss:	0.975141741335392
+2021-12-29 21:20:56,952 : Validation F1-score:	0.7266985143578645
+2021-12-29 21:20:56,953 : Validation precision:	0.7339541806040666
+2021-12-29 21:20:56,953 : Validation recall:	0.8064468137862634
+2021-12-29 21:22:16,598 : Epoch: 38
+2021-12-29 21:22:16,598 : Train avg. loss:	0.9385148021426514
+2021-12-29 21:22:20,724 : Validation avg. loss:	0.9861622661352157
+2021-12-29 21:22:20,725 : Validation F1-score:	0.7290626942610172
+2021-12-29 21:22:20,725 : Validation precision:	0.7379511147218596
+2021-12-29 21:22:20,725 : Validation recall:	0.8080337217951897
+2021-12-29 21:23:38,131 : Epoch: 39
+2021-12-29 21:23:38,131 : Train avg. loss:	0.9368686497646527
+2021-12-29 21:23:42,253 : Validation avg. loss:	0.9837358191609382
+2021-12-29 21:23:42,253 : Validation F1-score:	0.731674005918533
+2021-12-29 21:23:42,253 : Validation precision:	0.7337872480930798
+2021-12-29 21:23:42,253 : Validation recall:	0.8096206298041161
+2021-12-29 21:23:42,254 : 
+Testing trained model BioBert_LSTM...
+2021-12-29 21:23:49,856 : 
+              precision    recall  f1-score   support
+
+           O       0.81      1.00      0.89     25102
+       B-ADR       0.74      0.01      0.02      2091
+       I-ADR       0.00      0.00      0.00      2608
+   B-Disease       1.00      0.01      0.01       161
+   I-Disease       0.00      0.00      0.00        60
+      B-Drug       0.98      0.16      0.27      1028
+      I-Drug       0.00      0.00      0.00        46
+   B-Symptom       0.00      0.00      0.00        71
+   I-Symptom       0.00      0.00      0.00        77
+
+    accuracy                           0.81     31244
+   macro avg       0.39      0.13      0.13     31244
+weighted avg       0.74      0.81      0.73     31244
+
+2021-12-29 21:23:49,856 : Test avg. loss:	0.963865025648995
+2021-12-29 21:23:49,856 : Test F1-score:	0.7286155579030454
+2021-12-29 21:23:49,856 : Test precision:	0.7360496991098123
+2021-12-29 21:23:49,856 : Test recall:	0.8091153501472282
+2021-12-29 21:23:49,859 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:50,591 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer_config.json HTTP/1.1" 404 0
+2021-12-29 21:23:50,594 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:51,301 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:23:51,309 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:52,011 : https://huggingface.co:443 "GET /api/models/emilyalsentzer/Bio_ClinicalBERT HTTP/1.1" 200 993
+2021-12-29 21:23:52,014 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:52,718 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-12-29 21:23:52,722 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:53,414 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer.json HTTP/1.1" 404 0
+2021-12-29 21:23:53,417 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:54,131 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2021-12-29 21:23:54,134 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:54,847 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/special_tokens_map.json HTTP/1.1" 404 0
+2021-12-29 21:23:54,850 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:55,548 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer_config.json HTTP/1.1" 404 0
+2021-12-29 21:23:55,551 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:56,269 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:23:56,305 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:57,019 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:23:58,714 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:23:59,420 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:23:59,424 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:24:00,135 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-12-29 21:24:01,524 : 
+Start training for BioClinicalBert_Linear...
+
+2021-12-29 21:25:13,881 : Epoch: 1
+2021-12-29 21:25:13,881 : Train avg. loss:	0.35487033141246677
+2021-12-29 21:25:17,744 : Validation avg. loss:	0.22932058069854974
+2021-12-29 21:25:17,744 : Validation F1-score:	0.9151549389584492
+2021-12-29 21:25:17,744 : Validation precision:	0.9125343316559936
+2021-12-29 21:25:17,744 : Validation recall:	0.9214949256295978
+2021-12-29 21:26:30,772 : Epoch: 2
+2021-12-29 21:26:30,772 : Train avg. loss:	0.18659883904794272
+2021-12-29 21:26:34,659 : Validation avg. loss:	0.2250139346346259
+2021-12-29 21:26:34,659 : Validation F1-score:	0.9260451734402629
+2021-12-29 21:26:34,659 : Validation precision:	0.925681075192426
+2021-12-29 21:26:34,659 : Validation recall:	0.9287977232454492
+2021-12-29 21:27:47,120 : Epoch: 3
+2021-12-29 21:27:47,120 : Train avg. loss:	0.13501299456795202
+2021-12-29 21:27:50,993 : Validation avg. loss:	0.24440134204924108
+2021-12-29 21:27:50,993 : Validation F1-score:	0.9245848911750808
+2021-12-29 21:27:50,993 : Validation precision:	0.9236350426004816
+2021-12-29 21:27:50,993 : Validation recall:	0.9282070557912259
+2021-12-29 21:29:03,467 : Epoch: 4
+2021-12-29 21:29:03,467 : Train avg. loss:	0.09224729508800554
+2021-12-29 21:29:07,333 : Validation avg. loss:	0.25163599010556936
+2021-12-29 21:29:07,333 : Validation F1-score:	0.9268099186218518
+2021-12-29 21:29:07,333 : Validation precision:	0.9267524084656992
+2021-12-29 21:29:07,334 : Validation recall:	0.9292272995757934
+2021-12-29 21:29:07,334 : 
+Testing trained model BioClinicalBert_Linear...
+2021-12-29 21:29:14,630 : 
+              precision    recall  f1-score   support
+
+           O       0.95      0.97      0.96     25048
+       B-ADR       0.85      0.78      0.81      1989
+       I-ADR       0.76      0.71      0.73      2670
+   B-Disease       0.54      0.29      0.37       119
+   I-Disease       0.00      0.00      0.00        53
+      B-Drug       0.90      0.98      0.94       889
+      I-Drug       1.00      0.03      0.06        68
+   B-Symptom       0.00      0.00      0.00        74
+   I-Symptom       0.00      0.00      0.00        66
+
+    accuracy                           0.93     30976
+   macro avg       0.56      0.42      0.43     30976
+weighted avg       0.92      0.93      0.92     30976
+
+2021-12-29 21:29:14,631 : Test avg. loss:	0.2167166012028853
+2021-12-29 21:29:14,631 : Test F1-score:	0.9234539998155312
+2021-12-29 21:29:14,631 : Test precision:	0.9208794599480207
+2021-12-29 21:29:14,631 : Test recall:	0.9289449896694215
+2021-12-29 21:29:14,634 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:15,392 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer_config.json HTTP/1.1" 404 0
+2021-12-29 21:29:15,395 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:16,097 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:29:16,101 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:16,801 : https://huggingface.co:443 "GET /api/models/emilyalsentzer/Bio_ClinicalBERT HTTP/1.1" 200 993
+2021-12-29 21:29:16,804 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:17,523 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-12-29 21:29:17,526 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:18,222 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer.json HTTP/1.1" 404 0
+2021-12-29 21:29:18,226 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:18,917 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2021-12-29 21:29:18,920 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:19,616 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/special_tokens_map.json HTTP/1.1" 404 0
+2021-12-29 21:29:19,620 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:20,334 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer_config.json HTTP/1.1" 404 0
+2021-12-29 21:29:20,337 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:21,025 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:29:21,079 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:21,784 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:29:23,577 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:24,297 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:29:24,302 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:29:24,995 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-12-29 21:29:25,887 : 
+Start training for BioClinicalBert_CRF...
+
+2021-12-29 21:32:47,916 : Epoch: 1
+2021-12-29 21:32:47,917 : Train avg. loss:	0.3726424392394341
+2021-12-29 21:32:57,864 : Validation avg. loss:	0.24104439560323954
+2021-12-29 21:32:57,864 : Validation F1-score:	0.9167598466947438
+2021-12-29 21:32:57,864 : Validation precision:	0.912808308054254
+2021-12-29 21:32:57,864 : Validation recall:	0.9214949256295978
+2021-12-29 21:36:20,240 : Epoch: 2
+2021-12-29 21:36:20,240 : Train avg. loss:	0.18851273728493792
+2021-12-29 21:36:30,184 : Validation avg. loss:	0.24426497714594006
+2021-12-29 21:36:30,185 : Validation F1-score:	0.9269100932552405
+2021-12-29 21:36:30,185 : Validation precision:	0.9254467482722073
+2021-12-29 21:36:30,185 : Validation recall:	0.9297105729474306
+2021-12-29 21:39:51,812 : Epoch: 3
+2021-12-29 21:39:51,812 : Train avg. loss:	0.1348349838347657
+2021-12-29 21:40:01,773 : Validation avg. loss:	0.2322995643131435
+2021-12-29 21:40:01,773 : Validation F1-score:	0.9275183200937744
+2021-12-29 21:40:01,773 : Validation precision:	0.9269544759825596
+2021-12-29 21:40:01,773 : Validation recall:	0.9294420877409655
+2021-12-29 21:43:23,935 : Epoch: 4
+2021-12-29 21:43:23,935 : Train avg. loss:	0.0969810817207135
+2021-12-29 21:43:33,876 : Validation avg. loss:	0.24432205520570277
+2021-12-29 21:43:33,876 : Validation F1-score:	0.9280929538099789
+2021-12-29 21:43:33,876 : Validation precision:	0.9271422464984013
+2021-12-29 21:43:33,876 : Validation recall:	0.9300864522364818
+2021-12-29 21:46:55,305 : Epoch: 5
+2021-12-29 21:46:55,306 : Train avg. loss:	0.06740740671189652
+2021-12-29 21:47:05,251 : Validation avg. loss:	0.2694934698112775
+2021-12-29 21:47:05,251 : Validation F1-score:	0.9263211178198064
+2021-12-29 21:47:05,251 : Validation precision:	0.9251068901868493
+2021-12-29 21:47:05,251 : Validation recall:	0.9288514202867422
+2021-12-29 21:50:26,658 : Epoch: 6
+2021-12-29 21:50:26,658 : Train avg. loss:	0.04804639813802919
+2021-12-29 21:50:36,593 : Validation avg. loss:	0.28671864718198775
+2021-12-29 21:50:36,594 : Validation F1-score:	0.9258070785532472
+2021-12-29 21:50:36,594 : Validation precision:	0.9245519664550289
+2021-12-29 21:50:36,594 : Validation recall:	0.9280459646673468
+2021-12-29 21:50:36,595 : 
+Testing trained model BioClinicalBert_CRF...
+2021-12-29 21:50:55,075 : 
+              precision    recall  f1-score   support
+
+           O       0.97      0.98      0.97     25048
+       B-ADR       0.85      0.87      0.86      1989
+       I-ADR       0.81      0.78      0.80      2670
+   B-Disease       0.57      0.63      0.60       119
+   I-Disease       0.46      0.45      0.46        53
+      B-Drug       0.96      0.99      0.97       889
+      I-Drug       0.66      0.57      0.61        68
+   B-Symptom       0.49      0.24      0.32        74
+   I-Symptom       0.73      0.12      0.21        66
+
+    accuracy                           0.95     30976
+   macro avg       0.72      0.63      0.65     30976
+weighted avg       0.94      0.95      0.94     30976
+
+2021-12-29 21:50:55,076 : Test avg. loss:	0.17259862933248754
+2021-12-29 21:50:55,076 : Test F1-score:	0.9448820206846047
+2021-12-29 21:50:55,076 : Test precision:	0.9448917348953149
+2021-12-29 21:50:55,076 : Test recall:	0.9460872933884298
+2021-12-29 21:50:55,079 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:50:55,831 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer_config.json HTTP/1.1" 404 0
+2021-12-29 21:50:55,834 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:50:56,543 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:50:56,547 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:50:57,243 : https://huggingface.co:443 "GET /api/models/emilyalsentzer/Bio_ClinicalBERT HTTP/1.1" 200 993
+2021-12-29 21:50:57,246 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:50:57,957 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-12-29 21:50:57,960 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:50:58,659 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer.json HTTP/1.1" 404 0
+2021-12-29 21:50:58,662 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:50:59,371 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2021-12-29 21:50:59,374 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:51:00,068 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/special_tokens_map.json HTTP/1.1" 404 0
+2021-12-29 21:51:00,071 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:51:00,787 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/tokenizer_config.json HTTP/1.1" 404 0
+2021-12-29 21:51:00,790 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:51:01,502 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:51:01,528 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:51:02,254 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:51:03,940 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:51:04,653 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/config.json HTTP/1.1" 200 0
+2021-12-29 21:51:04,657 : Starting new HTTPS connection (1): huggingface.co:443
+2021-12-29 21:51:05,381 : https://huggingface.co:443 "HEAD /emilyalsentzer/Bio_ClinicalBERT/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-12-29 21:51:06,444 : 
+Start training for BioClinicalBert_LSTM...
+
+2021-12-29 21:52:23,563 : Epoch: 1
+2021-12-29 21:52:23,564 : Train avg. loss:	1.9182131333942831
+2021-12-29 21:52:27,605 : Validation avg. loss:	1.8551599442958833
+2021-12-29 21:52:27,605 : Validation F1-score:	0.7171018888941834
+2021-12-29 21:52:27,605 : Validation precision:	0.6469435018692571
+2021-12-29 21:52:27,605 : Validation recall:	0.8043279815282178
+2021-12-29 21:53:45,627 : Epoch: 2
+2021-12-29 21:53:45,627 : Train avg. loss:	1.8260516354637424
+2021-12-29 21:53:49,684 : Validation avg. loss:	1.7895360618829728
+2021-12-29 21:53:49,684 : Validation F1-score:	0.7171018888941834
+2021-12-29 21:53:49,684 : Validation precision:	0.6469435018692571
+2021-12-29 21:53:49,684 : Validation recall:	0.8043279815282178
+2021-12-29 21:55:07,834 : Epoch: 3
+2021-12-29 21:55:07,835 : Train avg. loss:	1.7702087529384307
+2021-12-29 21:55:11,900 : Validation avg. loss:	1.7444377958774566
+2021-12-29 21:55:11,900 : Validation F1-score:	0.7191803029607773
+2021-12-29 21:55:11,900 : Validation precision:	0.6691651214012051
+2021-12-29 21:55:11,900 : Validation recall:	0.804811254899855
+2021-12-29 21:56:30,038 : Epoch: 4
+2021-12-29 21:56:30,038 : Train avg. loss:	1.7152029884992726
+2021-12-29 21:56:34,112 : Validation avg. loss:	1.688061273097992
+2021-12-29 21:56:34,113 : Validation F1-score:	0.7460062935914459
+2021-12-29 21:56:34,113 : Validation precision:	0.7566012461020047
+2021-12-29 21:56:34,113 : Validation recall:	0.815658057241046
+2021-12-29 21:57:52,260 : Epoch: 5
+2021-12-29 21:57:52,260 : Train avg. loss:	1.6669503641824652
+2021-12-29 21:57:56,319 : Validation avg. loss:	1.647203505039215
+2021-12-29 21:57:56,319 : Validation F1-score:	0.7510816054765588
+2021-12-29 21:57:56,319 : Validation precision:	0.7626914502336455
+2021-12-29 21:57:56,319 : Validation recall:	0.8178596359340601
+2021-12-29 21:59:14,495 : Epoch: 6
+2021-12-29 21:59:14,495 : Train avg. loss:	1.6298225839642713
+2021-12-29 21:59:18,604 : Validation avg. loss:	1.605429047346115
+2021-12-29 21:59:18,605 : Validation F1-score:	0.7525253818986914
+2021-12-29 21:59:18,605 : Validation precision:	0.7650123104854463
+2021-12-29 21:59:18,605 : Validation recall:	0.8184503033882833
+2021-12-29 22:00:36,770 : Epoch: 7
+2021-12-29 22:00:36,770 : Train avg. loss:	1.5858208263007394
+2021-12-29 22:00:40,840 : Validation avg. loss:	1.5663901329040528
+2021-12-29 22:00:40,841 : Validation F1-score:	0.7723342726709996
+2021-12-29 22:00:40,841 : Validation precision:	0.7816326980632392
+2021-12-29 22:00:40,841 : Validation recall:	0.8269344359125812
+2021-12-29 22:01:59,380 : Epoch: 8
+2021-12-29 22:01:59,381 : Train avg. loss:	1.5388189528110254
+2021-12-29 22:02:03,449 : Validation avg. loss:	1.5198864489793777
+2021-12-29 22:02:03,450 : Validation F1-score:	0.7766415352032854
+2021-12-29 22:02:03,450 : Validation precision:	0.7869144058617096
+2021-12-29 22:02:03,450 : Validation recall:	0.8294581968533534
+2021-12-29 22:03:21,971 : Epoch: 9
+2021-12-29 22:03:21,971 : Train avg. loss:	1.500339977497602
+2021-12-29 22:03:26,042 : Validation avg. loss:	1.4853455483913423
+2021-12-29 22:03:26,042 : Validation F1-score:	0.7806754330506058
+2021-12-29 22:03:26,042 : Validation precision:	0.791789259980026
+2021-12-29 22:03:26,042 : Validation recall:	0.8316597755463674
+2021-12-29 22:04:44,602 : Epoch: 10
+2021-12-29 22:04:44,602 : Train avg. loss:	1.4675008698101462
+2021-12-29 22:04:48,677 : Validation avg. loss:	1.4533398061990739
+2021-12-29 22:04:48,677 : Validation F1-score:	0.7846117757815244
+2021-12-29 22:04:48,677 : Validation precision:	0.7906501756543028
+2021-12-29 22:04:48,677 : Validation recall:	0.833002201578693
+2021-12-29 22:06:07,256 : Epoch: 11
+2021-12-29 22:06:07,256 : Train avg. loss:	1.4336739178121525
+2021-12-29 22:06:11,311 : Validation avg. loss:	1.4339341998100281
+2021-12-29 22:06:11,311 : Validation F1-score:	0.7824144629574595
+2021-12-29 22:06:11,311 : Validation precision:	0.7889384203478171
+2021-12-29 22:06:11,311 : Validation recall:	0.8313912903399022
+2021-12-29 22:07:29,792 : Epoch: 12
+2021-12-29 22:07:29,792 : Train avg. loss:	1.4038441033258926
+2021-12-29 22:07:33,851 : Validation avg. loss:	1.4038658887147903
+2021-12-29 22:07:33,852 : Validation F1-score:	0.7908773299743274
+2021-12-29 22:07:33,852 : Validation precision:	0.7948737102655785
+2021-12-29 22:07:33,852 : Validation recall:	0.8353648713955861
+2021-12-29 22:08:51,973 : Epoch: 13
+2021-12-29 22:08:51,973 : Train avg. loss:	1.3766180198558056
+2021-12-29 22:08:56,032 : Validation avg. loss:	1.3772665172815324
+2021-12-29 22:08:56,032 : Validation F1-score:	0.7958431746624929
+2021-12-29 22:08:56,032 : Validation precision:	0.7984887795747049
+2021-12-29 22:08:56,032 : Validation recall:	0.8393921494925629
+2021-12-29 22:10:14,202 : Epoch: 14
+2021-12-29 22:10:14,202 : Train avg. loss:	1.351965614914024
+2021-12-29 22:10:18,257 : Validation avg. loss:	1.3594553500413895
+2021-12-29 22:10:18,257 : Validation F1-score:	0.8025886672052871
+2021-12-29 22:10:18,257 : Validation precision:	0.7956902458873333
+2021-12-29 22:10:18,257 : Validation recall:	0.8424528808462654
+2021-12-29 22:11:36,449 : Epoch: 15
+2021-12-29 22:11:36,449 : Train avg. loss:	1.3314064971721955
+2021-12-29 22:11:40,508 : Validation avg. loss:	1.3379746407270432
+2021-12-29 22:11:40,508 : Validation F1-score:	0.8013701311743946
+2021-12-29 22:11:40,508 : Validation precision:	0.7960135442768524
+2021-12-29 22:11:40,508 : Validation recall:	0.8411104548139398
+2021-12-29 22:12:58,770 : Epoch: 16
+2021-12-29 22:12:58,770 : Train avg. loss:	1.3077081642011656
+2021-12-29 22:13:02,842 : Validation avg. loss:	1.3155398190021514
+2021-12-29 22:13:02,842 : Validation F1-score:	0.8134567975017789
+2021-12-29 22:13:02,842 : Validation precision:	0.8061860905592423
+2021-12-29 22:13:02,842 : Validation recall:	0.8484669494710841
+2021-12-29 22:14:21,098 : Epoch: 17
+2021-12-29 22:14:21,098 : Train avg. loss:	1.289978244008809
+2021-12-29 22:14:25,167 : Validation avg. loss:	1.2912234723567964
+2021-12-29 22:14:25,167 : Validation F1-score:	0.7944567824389578
+2021-12-29 22:14:25,167 : Validation precision:	0.795225299668487
+2021-12-29 22:14:25,168 : Validation recall:	0.8384792997905816
+2021-12-29 22:15:43,516 : Epoch: 18
+2021-12-29 22:15:43,516 : Train avg. loss:	1.2672750044913188
+2021-12-29 22:15:47,584 : Validation avg. loss:	1.271338939666748
+2021-12-29 22:15:47,584 : Validation F1-score:	0.8104976709403624
+2021-12-29 22:15:47,584 : Validation precision:	0.8052660467385521
+2021-12-29 22:15:47,585 : Validation recall:	0.8484132524297912
+2021-12-29 22:17:05,923 : Epoch: 19
+2021-12-29 22:17:05,923 : Train avg. loss:	1.2461057453259934
+2021-12-29 22:17:09,990 : Validation avg. loss:	1.2543436586856842
+2021-12-29 22:17:09,990 : Validation F1-score:	0.8120867309678828
+2021-12-29 22:17:09,990 : Validation precision:	0.8019584271336041
+2021-12-29 22:17:09,990 : Validation recall:	0.8477151908929818
+2021-12-29 22:18:28,224 : Epoch: 20
+2021-12-29 22:18:28,224 : Train avg. loss:	1.2268783337008344
+2021-12-29 22:18:32,293 : Validation avg. loss:	1.2340403348207474
+2021-12-29 22:18:32,293 : Validation F1-score:	0.8105774975625489
+2021-12-29 22:18:32,293 : Validation precision:	0.8007413718047238
+2021-12-29 22:18:32,293 : Validation recall:	0.8468023411910004
+2021-12-29 22:19:50,628 : Epoch: 21
+2021-12-29 22:19:50,628 : Train avg. loss:	1.2076770254295237
+2021-12-29 22:19:54,701 : Validation avg. loss:	1.2189457595348359
+2021-12-29 22:19:54,702 : Validation F1-score:	0.8040729532897043
+2021-12-29 22:19:54,702 : Validation precision:	0.8005810418119055
+2021-12-29 22:19:54,702 : Validation recall:	0.843741609837298
+2021-12-29 22:21:13,034 : Epoch: 22
+2021-12-29 22:21:13,034 : Train avg. loss:	1.1898768557249195
+2021-12-29 22:21:17,102 : Validation avg. loss:	1.1973348379135131
+2021-12-29 22:21:17,103 : Validation F1-score:	0.805899942053595
+2021-12-29 22:21:17,103 : Validation precision:	0.7992025700943033
+2021-12-29 22:21:17,103 : Validation recall:	0.8442248832089352
+2021-12-29 22:22:35,452 : Epoch: 23
+2021-12-29 22:22:35,452 : Train avg. loss:	1.1687655910088197
+2021-12-29 22:22:39,527 : Validation avg. loss:	1.1890933781862258
+2021-12-29 22:22:39,528 : Validation F1-score:	0.8082199658545346
+2021-12-29 22:22:39,528 : Validation precision:	0.800301142769369
+2021-12-29 22:22:39,528 : Validation recall:	0.8458357944477259
+2021-12-29 22:23:57,879 : Epoch: 24
+2021-12-29 22:23:57,879 : Train avg. loss:	1.148952210471578
+2021-12-29 22:24:01,957 : Validation avg. loss:	1.1710424900054932
+2021-12-29 22:24:01,958 : Validation F1-score:	0.8081721246901575
+2021-12-29 22:24:01,958 : Validation precision:	0.8000359098794294
+2021-12-29 22:24:01,958 : Validation recall:	0.8454062181173817
+2021-12-29 22:25:20,298 : Epoch: 25
+2021-12-29 22:25:20,298 : Train avg. loss:	1.1288381823658074
+2021-12-29 22:25:24,371 : Validation avg. loss:	1.1382080912590027
+2021-12-29 22:25:24,371 : Validation F1-score:	0.7926475352513793
+2021-12-29 22:25:24,371 : Validation precision:	0.7911132622734028
+2021-12-29 22:25:24,371 : Validation recall:	0.837190570799549
+2021-12-29 22:26:42,708 : Epoch: 26
+2021-12-29 22:26:42,708 : Train avg. loss:	1.1072060191718331
+2021-12-29 22:26:46,779 : Validation avg. loss:	1.1181229859590531
+2021-12-29 22:26:46,780 : Validation F1-score:	0.8095825225942384
+2021-12-29 22:26:46,780 : Validation precision:	0.7999162736475673
+2021-12-29 22:26:46,780 : Validation recall:	0.8455673092412608
+2021-12-29 22:28:05,117 : Epoch: 27
+2021-12-29 22:28:05,117 : Train avg. loss:	1.0861132643083586
+2021-12-29 22:28:09,187 : Validation avg. loss:	1.1028737127780914
+2021-12-29 22:28:09,187 : Validation F1-score:	0.8128027918964515
+2021-12-29 22:28:09,187 : Validation precision:	0.8027872806089769
+2021-12-29 22:28:09,187 : Validation recall:	0.8477688879342749
+2021-12-29 22:29:27,456 : Epoch: 28
+2021-12-29 22:29:27,456 : Train avg. loss:	1.0692208713858666
+2021-12-29 22:29:31,531 : Validation avg. loss:	1.092983341217041
+2021-12-29 22:29:31,531 : Validation F1-score:	0.7943614241092971
+2021-12-29 22:29:31,531 : Validation precision:	0.7930854244995258
+2021-12-29 22:29:31,531 : Validation recall:	0.8378886323363582
+2021-12-29 22:30:49,755 : Epoch: 29
+2021-12-29 22:30:49,755 : Train avg. loss:	1.0572037794729219
+2021-12-29 22:30:53,826 : Validation avg. loss:	1.0840455800294877
+2021-12-29 22:30:53,826 : Validation F1-score:	0.8090557927993584
+2021-12-29 22:30:53,826 : Validation precision:	0.7997810685760725
+2021-12-29 22:30:53,826 : Validation recall:	0.8456210062825539
+2021-12-29 22:32:12,143 : Epoch: 30
+2021-12-29 22:32:12,143 : Train avg. loss:	1.0473865100937167
+2021-12-29 22:32:16,213 : Validation avg. loss:	1.0689501777291297
+2021-12-29 22:32:16,213 : Validation F1-score:	0.8093643349519996
+2021-12-29 22:32:16,213 : Validation precision:	0.8029158231558887
+2021-12-29 22:32:16,213 : Validation recall:	0.8471782204800515
+2021-12-29 22:33:34,556 : Epoch: 31
+2021-12-29 22:33:34,556 : Train avg. loss:	1.0377010903219237
+2021-12-29 22:33:38,627 : Validation avg. loss:	1.0651288777589798
+2021-12-29 22:33:38,627 : Validation F1-score:	0.8135156717841111
+2021-12-29 22:33:38,627 : Validation precision:	0.8037402432987621
+2021-12-29 22:33:38,627 : Validation recall:	0.8487891317188423
+2021-12-29 22:34:56,353 : Epoch: 32
+2021-12-29 22:34:56,353 : Train avg. loss:	1.0294801488409948
+2021-12-29 22:35:00,434 : Validation avg. loss:	1.051526926457882
+2021-12-29 22:35:00,434 : Validation F1-score:	0.8358036232277666
+2021-12-29 22:35:00,434 : Validation precision:	0.8190180593365262
+2021-12-29 22:35:00,434 : Validation recall:	0.8619986038769264
+2021-12-29 22:36:18,796 : Epoch: 33
+2021-12-29 22:36:18,796 : Train avg. loss:	1.019320259129044
+2021-12-29 22:36:22,868 : Validation avg. loss:	1.0461873784661293
+2021-12-29 22:36:22,868 : Validation F1-score:	0.8151653595588654
+2021-12-29 22:36:22,868 : Validation precision:	0.8032475229269331
+2021-12-29 22:36:22,868 : Validation recall:	0.8487891317188423
+2021-12-29 22:37:41,889 : Epoch: 34
+2021-12-29 22:37:41,889 : Train avg. loss:	1.0139026787594287
+2021-12-29 22:37:45,957 : Validation avg. loss:	1.0365409657359124
+2021-12-29 22:37:45,958 : Validation F1-score:	0.8365802186959066
+2021-12-29 22:37:45,958 : Validation precision:	0.8210846547543266
+2021-12-29 22:37:45,958 : Validation recall:	0.8623744831659775
+2021-12-29 22:39:04,595 : Epoch: 35
+2021-12-29 22:39:04,595 : Train avg. loss:	0.997094610094154
+2021-12-29 22:39:08,668 : Validation avg. loss:	1.0232100740075112
+2021-12-29 22:39:08,668 : Validation F1-score:	0.8412289166456062
+2021-12-29 22:39:08,668 : Validation precision:	0.8238532943100124
+2021-12-29 22:39:08,668 : Validation recall:	0.865381517478387
+2021-12-29 22:40:27,341 : Epoch: 36
+2021-12-29 22:40:27,341 : Train avg. loss:	0.9902175479996813
+2021-12-29 22:40:31,411 : Validation avg. loss:	1.0151527047157287
+2021-12-29 22:40:31,411 : Validation F1-score:	0.8348629928193219
+2021-12-29 22:40:31,411 : Validation precision:	0.8186584224630028
+2021-12-29 22:40:31,411 : Validation recall:	0.8624818772485636
+2021-12-29 22:41:52,059 : Epoch: 37
+2021-12-29 22:41:52,059 : Train avg. loss:	0.980849314997666
+2021-12-29 22:41:56,140 : Validation avg. loss:	1.011662596464157
+2021-12-29 22:41:56,140 : Validation F1-score:	0.8392121299782372
+2021-12-29 22:41:56,140 : Validation precision:	0.8242003712059366
+2021-12-29 22:41:56,140 : Validation recall:	0.8624281802072706
+2021-12-29 22:43:13,843 : Epoch: 38
+2021-12-29 22:43:13,843 : Train avg. loss:	0.9688924122465788
+2021-12-29 22:43:17,916 : Validation avg. loss:	1.0091325387358665
+2021-12-29 22:43:17,916 : Validation F1-score:	0.8398967132639119
+2021-12-29 22:43:17,916 : Validation precision:	0.8230764035266555
+2021-12-29 22:43:17,916 : Validation recall:	0.865488911560973
+2021-12-29 22:44:36,225 : Epoch: 39
+2021-12-29 22:44:36,225 : Train avg. loss:	0.963358756617038
+2021-12-29 22:44:40,291 : Validation avg. loss:	0.9958484947681427
+2021-12-29 22:44:40,291 : Validation F1-score:	0.8421397348962539
+2021-12-29 22:44:40,291 : Validation precision:	0.824486511363513
+2021-12-29 22:44:40,291 : Validation recall:	0.8662406701390754
+2021-12-29 22:45:58,630 : Epoch: 40
+2021-12-29 22:45:58,630 : Train avg. loss:	0.9595499456363873
+2021-12-29 22:46:02,703 : Validation avg. loss:	1.0039731413125992
+2021-12-29 22:46:02,703 : Validation F1-score:	0.8430648939970311
+2021-12-29 22:46:02,703 : Validation precision:	0.8256990355258569
+2021-12-29 22:46:02,703 : Validation recall:	0.8674757020888149
+2021-12-29 22:46:02,703 : 
+Testing trained model BioClinicalBert_LSTM...
+2021-12-29 22:46:10,378 : 
+              precision    recall  f1-score   support
+
+           O       0.90      0.98      0.94     25048
+       B-ADR       0.81      0.55      0.66      1989
+       I-ADR       0.74      0.66      0.70      2670
+   B-Disease       0.00      0.00      0.00       119
+   I-Disease       0.00      0.00      0.00        53
+      B-Drug       0.00      0.00      0.00       889
+      I-Drug       0.00      0.00      0.00        68
+   B-Symptom       0.00      0.00      0.00        74
+   I-Symptom       0.00      0.00      0.00        66
+
+    accuracy                           0.89     30976
+   macro avg       0.27      0.24      0.25     30976
+weighted avg       0.84      0.89      0.86     30976
+
+2021-12-29 22:46:10,378 : Test avg. loss:	0.9766070767054482
+2021-12-29 22:46:10,378 : Test F1-score:	0.8619266965418523
+2021-12-29 22:46:10,378 : Test precision:	0.8449370773272596
+2021-12-29 22:46:10,378 : Test recall:	0.8852014462809917
+
