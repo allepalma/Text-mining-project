@@ -1,5 +1,6 @@
 import torch
 import sklearn
+import tqdm
 import numpy as np
 import seaborn
 import os
@@ -28,6 +29,7 @@ class EmbeddingExtractor:
         self.bert_model = bert_model
         self.clf_head = clf_head
         # The transformers and the heads
+        self.datasets = {0: 'Training', 1: 'Validation', 2: 'Test'}
         self.transformers = {'Bert': 'bert-base-uncased',
                              'BioBert': 'dmis-lab/biobert-v1.1',
                              'BioClinicalBert': 'emilyalsentzer/Bio_ClinicalBERT'}
@@ -47,6 +49,7 @@ class EmbeddingExtractor:
                                        dropout=0.1, hidden_size=768, num_clf_hidden_layers=0, num_neurons=(),
                                        activation=nn.ReLU)
         self.model = self.heads[self.clf_head](self.config).to(self.device)
+        print('Extracting the embeddings...')
         self.embeddings_to_plot_pre_training, self.labels_to_plot_pre_training, self.ids_to_plot_pre_training = self.extract_embeddings()
 
         # Parametrize the model
@@ -56,10 +59,11 @@ class EmbeddingExtractor:
         self.embeddings_to_plot_post_training, self.labels_to_plot_post_training, self.ids_to_plot_post_training = self.extract_embeddings()
 
         # Save the objects
-        self.save_embeddings(self.embeddings_to_plot_pre_training, self.embeddings_to_plot_pre_training, self.embeddings_to_plot_pre_training,
+        print('Saving the embeddings...')
+        self.save_embeddings(self.embeddings_to_plot_pre_training, self.labels_to_plot_pre_training, self.ids_to_plot_pre_training,
                              'data_before_tuning.pkl')
 
-        self.save_embeddings(self.embeddings_to_plot_post_training, self.embeddings_to_plot_post_training, self.embeddings_to_plot_post_training,
+        self.save_embeddings( self.embeddings_to_plot_post_training, self.labels_to_plot_post_training, self.ids_to_plot_pre_training,
                              'data_after_tuning.pkl')
 
     def load_data(self):
@@ -68,7 +72,7 @@ class EmbeddingExtractor:
         :return: Torch loader class containing the data
         """
         #Check if the dataset is already in the folder
-        if not os.path.exists(self.data_path):
+        if not os.path.isfile(self.data_path):
             data_dir = 'cadec'
             c = DatasetCreator()
             c.create_dataset(data_dir, self.data_path)
@@ -88,6 +92,7 @@ class EmbeddingExtractor:
         embeddings_to_plot, labels_to_plot, dataset_encoding = [], [], []  # Contain the final embeddings
         # For each data loader
         for loader in [self.data_object.train_dataloader, self.data_object.val_dataloader, self.data_object.test_dataloader]:
+            print(f'Inference on the {self.datasets[dataset_id]} set')
             # For all the batches in the loader
             for batch in loader:
                 # Inputs to the BERT model
@@ -157,6 +162,9 @@ class EmbeddingExtractor:
         obj = [embeddings, labels, sentences]
         with open(path, 'wb') as file:
             pkl.dump(obj, file)
+
+# Usage
+#EmbeddingExtractor('BioClinicalBert', 'CRF', 'saved_models/BioClinicalBert_CRF', 'dataset.txt', 13)
 
 
 
