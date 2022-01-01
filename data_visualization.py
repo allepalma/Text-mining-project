@@ -13,6 +13,7 @@ import pickle as pkl
 class EmbeddingExtractor:
     def __init__(self, bert_model, clf_head, model_path, data_path, seed):
         """
+        Class extracting the embeddings from named entities
         :param bert_model: the name of the bert model to use (Bert, BioBert, BioClinicalBert)
         :param clf_head: the name of the classification head to use (Linear, CRF, LSTM)
         :param model_path: the path with the weights of the trained model
@@ -30,6 +31,7 @@ class EmbeddingExtractor:
         self.transformers = {'Bert': 'bert-base-uncased',
                              'BioBert': 'dmis-lab/biobert-v1.1',
                              'BioClinicalBert': 'emilyalsentzer/Bio_ClinicalBERT'}
+        # The Bert model options
         self.heads = {'Linear': BertLinear,
                       'CRF': BertCRF,
                       'LSTM': BertLSTM}
@@ -45,13 +47,13 @@ class EmbeddingExtractor:
                                        dropout=0.1, hidden_size=768, num_clf_hidden_layers=0, num_neurons=(),
                                        activation=nn.ReLU)
         self.model = self.heads[self.clf_head](self.config).to(self.device)
-        self.embeddings_to_plot_pre_training, self.embeddings_to_plot_pre_training, self.embeddings_to_plot_pre_training = self.extract_embedings()
+        self.embeddings_to_plot_pre_training, self.labels_to_plot_pre_training, self.ids_to_plot_pre_training = self.extract_embeddings()
 
         # Parametrize the model
         self.parametrize_model()
 
         # Extract embeddings after parametrization
-        self.embeddings_to_plot_post_training, self.embeddings_to_plot_post_training, self.embeddings_to_plot_post_training = self.extract_embedings()
+        self.embeddings_to_plot_post_training, self.labels_to_plot_post_training, self.ids_to_plot_post_training = self.extract_embeddings()
 
         # Save the objects
         self.save_embeddings(self.embeddings_to_plot_pre_training, self.embeddings_to_plot_pre_training, self.embeddings_to_plot_pre_training,
@@ -75,14 +77,14 @@ class EmbeddingExtractor:
                                     batch_size=4, max_length=512)
         return data_object
 
-    def extract_embedings(self):
+    def extract_embeddings(self):
         """
         Extract the embeddings given the model and process them such that:
         - The embeddings associated to O labels are not considered
         - The embeddings of word pieces of the same word are averaged
         :return: The processed embeddings of training, test and validation sets
         """
-        dataset_id = 0
+        dataset_id = 0  # 0 for training, 1 for validation and 2 for testing
         embeddings_to_plot, labels_to_plot, dataset_encoding = [], [], []  # Contain the final embeddings
         # For each data loader
         for loader in [self.data_object.train_dataloader, self.data_object.val_dataloader, self.data_object.test_dataloader]:
@@ -92,13 +94,13 @@ class EmbeddingExtractor:
                 input_ids = batch[0].to(self.device)
                 attention_mask = batch[1].to(self.device)
                 labels = batch[2].to(self.device)
-                word_ids = batch[3].to(self.device)  # The ids of the words before breaking them into pieces
+                word_ids = batch[3].to(self.device)  # The ids of the words before breaking them into pieces (used for averaging)
                 # Apply the model
                 with torch.no_grad():
                     output = self.model(input_ids=input_ids,
                                         attention_mask=attention_mask,
                                         labels=labels)
-                # For the batch, fetch the last embedding layer
+                # For each batch, fetch the last embedding layer
                 last_layer_embeddings = output['hidden_states'][12]
                 # For each embedding of the batch, perform the extraction and averaging of the embeddings
                 for i in range(last_layer_embeddings.shape[0]):
@@ -136,7 +138,7 @@ class EmbeddingExtractor:
             label_wordpiece = labels[mask]
             # Average different word pieces
             if len(wordpiece_embeddings) > 0:
-                mean_wordpiece_embedding = wordpiece_embeddings.mean(dim = 0)
+                mean_wordpiece_embedding = wordpiece_embeddings.mean(dim=0)
                 # Store the results
                 embeddings_to_keep.append(mean_wordpiece_embedding.tolist())
                 labels_to_keep.append(label_wordpiece[0].item())
@@ -154,7 +156,7 @@ class EmbeddingExtractor:
         """
         obj = [embeddings, labels, sentences]
         with open(path, 'wb') as file:
-            pkl.dump(obj, path)
+            pkl.dump(obj, file)
 
 
 

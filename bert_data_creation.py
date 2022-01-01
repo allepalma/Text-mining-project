@@ -154,8 +154,8 @@ class DataProcessor():
         word_ids = []
         for i in range(len(tokenized_data['input_ids'])):
             batch_word_id = tokenized_data.word_ids(batch_index=i)
-            # Convert Nones to 0 and augment all IDs by 1
-            batch_word_id = [i+1 if i != None else 0 for i in batch_word_id]
+            # Convert Nones to 0 and augment all IDs by 1 (used when we create tensors)
+            batch_word_id = [i+1 if i!=None else 0 for i in batch_word_id]
             word_ids.append(batch_word_id)
         tokenized_data['word_ids'] = word_ids
         return tokenized_data
