@@ -61,10 +61,10 @@ class EmbeddingExtractor:
         # Save the objects
         print('Saving the embeddings...')
         self.save_embeddings(self.embeddings_to_plot_pre_training, self.labels_to_plot_pre_training, self.ids_to_plot_pre_training,
-                             'data_before_tuning.pkl')
+                             os.path.join('embeddings', 'data_before_tuning.pkl'))
 
         self.save_embeddings( self.embeddings_to_plot_post_training, self.labels_to_plot_post_training, self.ids_to_plot_pre_training,
-                             'data_after_tuning.pkl')
+                             os.path.join('embeddings', 'data_after_tuning.pkl'))
 
     def load_data(self):
         """
@@ -118,7 +118,7 @@ class EmbeddingExtractor:
                     embeddings_to_plot += embeddings_to_keep
                     labels_to_plot += labels_to_keep
             # Add the dataset encoding (0 for training, 1 for valid, 2 for test)
-            dataset_encoding += [dataset_id for i in range(len(embeddings_to_plot))]
+            dataset_encoding += [dataset_id for _ in range(len(dataset_encoding), len(embeddings_to_plot))]
             dataset_id += 1
         return np.array(embeddings_to_plot), np.array(labels_to_plot), np.array(dataset_encoding)
 
