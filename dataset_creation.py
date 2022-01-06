@@ -4,9 +4,10 @@ import numpy as np
 from tqdm import tqdm
 
 class DatasetCreator():
-    def __init__(self, doublecheck_labels=False, discard=["DICLOFENAC-SODIUM.7.txt"]):
+    def __init__(self, data_dir, dataset_file, doublecheck_labels=False, discard=["DICLOFENAC-SODIUM.7.txt"]):
         self.doublecheck_labels = doublecheck_labels
         self.discarded_files = [file for file in discard]
+        self.create_dataset(data_dir, dataset_file)
 
     def create_dataset(self, dir='cadec', writefile='dataset'):
         '''

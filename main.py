@@ -1,64 +1,56 @@
-import os
+from utils import *
 from dataset_creation import DatasetCreator
-from bert_data_creation import DataProcessor
-from traintest import TrainTest
-from models.models import *
-from models.config import CustomBertConfig
-from torch import nn
+from embedding_extractor import EmbeddingExtractor
 
+import os
 
-def baseline(seed, max_length, dataset_file):
-    # Class containing the data
-    data_loader = DataProcessor(filename=dataset_file, model='bert-base-uncased', seed=seed, max_length=max_length,
-                                batch_size=4)
-    # Configure parameters
-    config = CustomBertConfig(clf_type='baseline', num_labels=9, embedding_size=256, vocab_size=30522, hidden_size=128)
-    # Initialize model
-    bert_model = Baseline(config)
-    # Train and test the model
-    TrainTest(bert_model, 'Baseline', data_loader, learning_rate=0.001)
+seed = 13
+dataset_file = 'dataset.txt'
+max_length = 512
 
-def bertmodels(seed, max_length, dataset_file):
-    transformers = {
-        'Bert': 'bert-base-uncased', 
-        'BioBert': 'dmis-lab/biobert-v1.1', 
-        'BioClinicalBert': 'emilyalsentzer/Bio_ClinicalBERT'
-        }
-    heads = {
-        'Linear': BertLinear,
-        'CRF': BertCRF,
-        'LSTM': BertLSTM
-    }
-    for t_name, transformer in transformers.items():
-        for h_name, head in heads.items():
-            # Class containing the data
-            data_loader = DataProcessor(filename=dataset_file, model=transformer, seed=seed, max_length=max_length,
-                                        batch_size=4)
-            # Configure parameters
-            config = CustomBertConfig(model=transformer, clf_type='linear', num_labels=9,
-                                      dropout=0.1, hidden_size=768, num_clf_hidden_layers=0, num_neurons=(),
-                                      activation=nn.ReLU)
-            # Initialize model
-            bert_model = head(config)
-            # Train and test the model
-            model_name = f'{t_name}_{h_name}'
-            TrainTest(bert_model, model_name, data_loader)
+# Define which methods to execute
+train_baseline = False
+train_berts = False
+extract_embeddings = True
+show_tsne = True
 
+# Create dataset if it has not been created yet
+if not os.path.isfile(dataset_file):
+    data_dir = 'cadec'
+    DatasetCreator(data_dir, dataset_file)
 
-if __name__ == '__main__':
-    seed = 13
-    dataset_file = 'dataset.txt'
-    max_length = 512
+# Create necessary/missing directories (saved_models/logging/embeddings)
+create_dirs()
 
-    # Create dataset if it has not been created yet
-    if not os.path.isfile(dataset_file):
-        data_dir = 'cadec'
-        c = DatasetCreator()
-        c.create_dataset(data_dir, dataset_file)
-
-    # Create directory to store trained models
-    if not os.path.exists('saved_models'):
-        os.makedirs('saved_models')
-
+# Train and test baseline
+if train_baseline:
     baseline(seed, max_length, dataset_file)
+
+# Train and test BERT models
+if train_berts:
     bertmodels(seed, max_length, dataset_file)
+
+
+# Specify best performing BERT model
+best_bert = 'emilyalsentzer/Bio_ClinicalBERT'
+best_transformer = 'BioClinicalBert'
+best_head = 'CRF'
+model_path = os.path.join('saved_models','BioClinicalBert_CRF')
+
+# Initialize dataloader for best BERT
+data_loader = DataProcessor(filename=dataset_file, model=best_bert, seed=seed, max_length=max_length,
+                                    batch_size=4)
+
+# Extract and save BERT embeddings
+if extract_embeddings:
+    EmbeddingExtractor(best_transformer, best_head, model_path, dataset_file, seed)
+
+# Calculate/get t-SNE and plot
+# (Can only be done with either saved BERT embeddings or saved t-SNE embeddings)
+if show_tsne:
+    datatypes = ['before', 'after']
+    for datatype in datatypes:
+        # Calculate t-SNE and save embeddings in embedding folder (if they don't exist yet)
+        reduced_embs, labels, dataset_encoding = get_tsne(datatype, save=True)
+        # Plot t-SNE
+        plot_tsne(data_loader, reduced_embs, labels, dataset_encoding, datatype)
