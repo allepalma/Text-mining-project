@@ -35,14 +35,20 @@ The `config.py` file contains a configuration class to set the parameters for th
 * `embeddings`: contains pickle files storing the t-SNE embeddings used to produce the plots stored in ` plots` 
 
 ## Reproduction
-To reproduce the training process of the BERT model, the extraction of the embeddings and the t-SNE dimensional reduction, it is enough to run the following:
+First, install the required packages:
 
 ```
-pip install -r requirements.txt
+pip install -r requirements.txt 
+```
+
+To reproduce the training process of the BERT model, the extraction of the embeddings and the t-SNE dimensional reduction all together, it is enough to run the following:
+
+```
 python main.py 
 ```
-In `main.py` the best BERT model is automatically set to BioclinicalBERT with CRF head, but this can be manually tweaked.
+In `main.py` the best BERT model is automatically set to BioclinicalBERT with CRF head, but this can be manually tweaked. 
 
+To simply plot the t-SNE model stored in the `embeddings` folder, the variables `train_baseline`, `train_bert` and `extract_embeddings` must be set to `False` and the `main.py` file shall be launched as is. 
 
 ### Packages
 The code is fully implemented in Python3 and the required packages to run the provided code can be extrapolated from in `requirements.txt`.
