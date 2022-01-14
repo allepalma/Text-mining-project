@@ -30,6 +30,13 @@ The `config.py` file contains a configuration class to set the parameters for th
 * `traintest.py`: sets up a class with methods necessary to implement the training process
 * `embedding_extractor.py`: reads pre-trained BERT weights and uses them to parameterize an initialized BERT model. Then, such BERT model is employed to extract embeddings from the training instances. The embeddings of multiple word pieces of the same token are averaged to a single vector.
 
+## Reproduction
+```
+pip install -r requirements.txt
+python main.py 
+```
+
+
 ### Packages
 The code is fully implemented in Python3 and the required packages to run the provided code can be extrapolated from in `requirements.txt`.
 
