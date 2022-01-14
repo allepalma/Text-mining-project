@@ -30,11 +30,18 @@ The `config.py` file contains a configuration class to set the parameters for th
 * `traintest.py`: sets up a class with methods necessary to implement the training process
 * `embedding_extractor.py`: reads pre-trained BERT weights and uses them to parameterize an initialized BERT model. Then, such BERT model is employed to extract embeddings from the training instances. The embeddings of multiple word pieces of the same token are averaged to a single vector.
 
+### Other folders
+* `logging`: contains the log files with training performances across epochs for all the trained BERT variants.
+* `embeddings`: contains pickle files storing the t-SNE embeddings used to produce the plots stored in ` plots` 
+
 ## Reproduction
+To reproduce the training process of the BERT model, the extraction of the embeddings and the t-SNE dimensional reduction, it is enough to run the following:
+
 ```
 pip install -r requirements.txt
 python main.py 
 ```
+In `main.py` the best BERT model is automatically set to BioclinicalBERT with CRF head, but this can be manually tweaked.
 
 
 ### Packages
