@@ -1,12 +1,12 @@
 # Visualizing BERT Embeddings on Adverse Drug Effect Detection
 ### Laurens Engwegen, Alessandro Palma
 
+## Introduction
+This is the repository of the NLP project "Visualizing BERT Embeddings on Adverse Drug Effect Detection". The scope of this work is to compare the performance of three variants of the BERT model (BERT-base, BioBERT and BioClinicalBERT) on the task of Named Entity Recognition of Adverse Drug Effects (ADE) on blog posts from the AskAPatient forum (https://www.askapatient.com/). After comparing the three models in terms of test set performance using different classification heads, we visualize the word embeddings of the last layer of the BERT models to define to what extent they are capable to separate different entities in the latent space. 
+
 <p align="center">
   <img width="400" height="400" src="https://github.com/allepalma/Text-mining-project/blob/main/image/first_page_image.png">
 </p>
-
-## Introduction
-This is the repository of the NLP project "Visualizing BERT Embeddings on Adverse Drug Effect Detection". The scope of this work is to compare the performance of three variants of the BERT model (BERT-base, BioBERT and BioClinicalBERT) on the task of Named Entity Recognition of Adverse Drug Effects (ADE) on blog posts from the AskAPatient forum (https://www.askapatient.com/). After comparing the three models in terms of test set performance using different classification heads, we visualize the word embeddings of the last layer of the BERT models to define to what extent they are capable to separate different entities in the latent space. 
 
 ## Setup
 ### The data
@@ -25,7 +25,7 @@ The `model.py` script contains the implementation of BERT models with different 
 
 The `config.py` file contains a configuration class to set the parameters for the initialization of the BERT models.
 
-### Other script
+### Other scripts
 * `main.py`: launches the training loop for the experiments with different BERT models with pre-defined parameters
 * `traintest.py`: sets up a class with methods necessary to implement the training process
 * `embedding_extractor.py`: reads pre-trained BERT weights and uses them to parameterize an initialized BERT model. Then, such BERT model is employed to extract embeddings from the training instances. The embeddings of multiple word pieces of the same token are averaged to a single vector.
