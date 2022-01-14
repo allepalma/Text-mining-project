@@ -18,9 +18,21 @@ Two files are dedicated to data processing for the Named Entity Recognition task
                          
 * `bert_data_creation.py`: it parses `dataset.txt` and prepares the data for its submission to the PyTorch implementation of the BERT models, including the partition into                                    training, validation and test set. 
 
+### The models
+The `model` folder contains script for the setup and implementation of the neural models used for named entity recognition.
+
+The `model.py` script contains the implementation of BERT models with different classification heads, namely a linear module, a CRF layer and an LSTM layer. The models are built on the Python3 `transformers`, `pytorch` and `pytorch-crf` libraries. 
+
+The `config.py` file contains a configuration class to set the parameters for the initialization of the BERT models.
+
+### Other script
+* `main.py`: launches the training loop for the experiments with different BERT models with pre-defined parameters
+* `traintest.py`: sets up a class with methods necessary to implement the training process
+* `embedding_extractor.py`: reads pre-trained BERT weights and uses them to parameterize an initialized BERT model. Then, such BERT model is employed to extract embeddings from the training instances. The embeddings of multiple word pieces of the same token are averaged to a single vector.
+
 ### Packages
 The code is fully implemented in Python3 and the required packages to run the provided code can be extrapolated from in `requirements.txt`.
 
 ## References
 [1] Karimi S, Metke-Jimenez A, Kemp M, Wang C. Cadec: A corpus of adverse drug event annotations. J Biomed Inform. 2015 Jun;55:73-81. doi: 10.1016/j.jbi.2015.03.010. Epub 2015 Mar 27. PMID: 25817970
-[2] 
+
