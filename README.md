@@ -2,7 +2,7 @@
 ### Laurens Engwegen, Alessandro Palma
 
 <p align="center">
-  <img width="600" height="200" src="https://github.com/allepalma/Text-mining-project/blob/main/image/first_page_image.png">
+  <img width="400" height="400" src="https://github.com/allepalma/Text-mining-project/blob/main/image/first_page_image.png">
 </p>
 
 ## Introduction
