@@ -42,10 +42,10 @@ class DataProcessor():
 
         # Create ids for labels and split into training and test set
         self.label2id, self.id2label = self.get_label_encoding_dict()  # Initialize mapping of labels to ids
-        # Test set: 0.2
-        self.tokens_train, self.tokens_test, self.labels_train, self.labels_test = self.train_test_split(test_size=0.20)
-        # Validation set: 0.125 of 0.8 = 0.1 of total
-        self.tokens_train, self.tokens_val, self.labels_train, self.labels_val = self.train_test_split(test_size=0.125)
+        # Split the dataset into 0.8 training and 0.2 test
+        self.tokens_train, self.tokens_test, self.labels_train, self.labels_test = train_test_split(self.split_tokens, self.split_labels, test_size=0.20, random_state=self.seed)
+        # Split the training set into 0.875 training and 0.125 validation (0.7 and 0.1 of total dataset, respectively)
+        self.tokens_train, self.tokens_val, self.labels_train, self.labels_val = train_test_split(self.tokens_train, self.labels_train, test_size=0.125, random_state=self.seed)
 
         print('Tokenize sentences...')
         # Tokenize for BERT
@@ -77,6 +77,7 @@ class DataProcessor():
         self.train_dataloader = self.create_data_loaders(self.tokenized_input_train, self.y_train)
         self.val_dataloader = self.create_data_loaders(self.tokenized_input_val, self.y_val)
         self.test_dataloader = self.create_data_loaders(self.tokenized_input_test, self.y_test)
+
 
     def sentence_parser(self):
         '''
