@@ -90,7 +90,7 @@ def plot_tsne(dataloader, reduced_embs, labels, dataset_encoding, datatype):
         'darkgreen', 'chartreuse',
         'blue', 'aqua',
         'darkviolet', 'violet',
-        'maroon', 'red'
+        'red', 'orange'
     ]
     # Plot
     plt.figure(figsize=[12.8, 9.6])

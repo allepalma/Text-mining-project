@@ -11,7 +11,7 @@ max_length = 512
 # Define which methods to execute
 train_baseline = False
 train_berts = False
-extract_embeddings = True
+extract_embeddings = False
 show_tsne = True
 
 # Create dataset if it has not been created yet
