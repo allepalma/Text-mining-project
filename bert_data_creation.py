@@ -197,4 +197,3 @@ class DataProcessor():
         # For each data loader we need the data, a sampler and a batch size
         data_loader = DataLoader(dataset=data, sampler=sampler, batch_size=self.batch_size)
         return data_loader
-
