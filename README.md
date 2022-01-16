@@ -1,4 +1,5 @@
-# Comparison and Visualization of BERT Embeddings on Adverse Drug Effect Detection
+# Comparison and Visualization of BERT variants on Adverse Drug Effect Detection
+
 ### Laurens Engwegen, Alessandro Palma
 
 ## Introduction
