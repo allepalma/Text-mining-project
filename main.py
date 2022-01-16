@@ -11,7 +11,7 @@ max_length = 512
 # Define which methods to execute
 train_baseline = False
 train_berts = False
-extract_embeddings = False
+extract_embeddings = True
 show_tsne = True
 
 # Create dataset if it has not been created yet
@@ -32,10 +32,10 @@ if train_berts:
 
 
 # Specify best performing BERT model
-best_bert = 'emilyalsentzer/Bio_ClinicalBERT'
-best_transformer = 'BioClinicalBert'
+best_bert = 'bert-base-uncased'
+best_transformer = 'Bert'
 best_head = 'CRF'
-model_path = os.path.join('saved_models','BioClinicalBert_CRF')
+model_path = os.path.join('saved_models','Bert_CRF')
 
 # Initialize dataloader for best BERT
 data_loader = DataProcessor(filename=dataset_file, model=best_bert, seed=seed, max_length=max_length,
